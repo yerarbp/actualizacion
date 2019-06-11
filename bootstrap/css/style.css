@@ -1,0 +1,25 @@
+table {
+  font: .9em Arial, Helvetica, sans-serif;
+  border: 2px solid #00377b;
+  border-collapse: collapse;
+ 
+}
+table th {
+  background:#b22c91;
+}
+
+table th, table td {
+  border: 2px solid #b22c91;
+  line-height: 2em;
+  text-align: center;
+  
+}
+
+table tr:hover {
+  background:#9e999e !important;
+
+}
+
+.azul{ color:white;
+font-size: 14px;}
+
