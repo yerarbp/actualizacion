@@ -71,7 +71,7 @@
               <div class="form-group" style="width: 50%;">
              <label for="nombre">Acta de entrega, recepción y devolución del Padrón
                    Electoral del Registro Federal de Electores</label>
-                  <a class="form-control" href="document/ACUSE.docx" download>
+                  <a class="form-control" href="document/descarga_padron.docx" download>
                   <img  src="img/dowload.png" alt="descargar" width="30" height="30" >
                   </a>
 
@@ -79,6 +79,9 @@
 
               <label for="entidad">Adjunte Acuse PDF del Acta de entrega, recepción y devolución del Padrón
                   Electoral del Registro Federal de Electores:</label>
+
+               <h6 align="center"> El archivo de acuse debe tener la estructura en el nombre
+        30DISTRITO-DIAMESAÑO-ACTAENTREGA(300X-110619-ACTAENTREGA) </h6>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
 
             <br>
