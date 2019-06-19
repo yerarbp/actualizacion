@@ -63,7 +63,7 @@
 
          
         <h3 align="center">Padrón Electoral</h3>
-        <h6 align="center"> Los archivos adjuntos deberan contener la siguiente estructura en el nombre
+        <h6 align="center"> Los archivos adjuntos deberán contener la siguiente estructura en el nombre
         30DISTRITO-DIAMESAÑO-ENTREGA PADRON(300X-110619-ENTREGAPADRON) </h6>
         <div class="container" align="center" style="border:1px solid:#C0BCBC;">
             <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
