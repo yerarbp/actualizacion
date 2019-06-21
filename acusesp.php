@@ -106,7 +106,7 @@ $bandera=false;?>
 
           <label for="entidad">Actualización del Padrón Electoral:</label>
             <h6 align="center"> El archivo de acuse debe tener la estructura en el nombre
-        30DISTRITO-DIAMESAÑO-ACTUALIZAPADRON(300X-110619-ACTUALIZADAPADRON) </h6> <br>
+        30DD-FECHA ACTUALIZACIÓN(ddmmaa)-A---  30DD-210619-A </h6> <br>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
             
 
@@ -114,7 +114,7 @@ $bandera=false;?>
 
               <label for="entidad">Borrado de Dispositivos de Almacenamiento :</label>
               <h6 align="center"> El archivo de acuse debe tener la estructura en el nombre
-        30DISTRITO-DIAMESAÑO-BORRADOUSB(300X-110619-BORRADOUSB) </h6> <br>
+        30DD-FECHA Borrado(ddmmaa)B ---- 30DD-210619-B </h6> <br>
                   <input class="form-control" type="file" id="acuse2" name="acuse2">
 
             <br>
