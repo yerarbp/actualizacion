@@ -63,9 +63,7 @@
 
          
         <h3 align="center">Padrón Electoral</h3>
-        <h6 align="center"> Los archivos adjuntos deberán contener la siguiente estructura en el nombre
-        30DISTRITO-DIAMESAÑO-ENTREGA PADRON(300X-110619-ENTREGAPADRON) </h6>
-        <div class="container" align="center" style="border:1px solid:#C0BCBC;">
+                <div class="container" align="center" style="border:1px solid:#C0BCBC;">
             <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
               <div class="form-group" style="width: 50%;">
@@ -81,7 +79,7 @@
                   Electoral del Registro Federal de Electores:</label>
 
                <h6 align="center"> El archivo de acuse debe tener la estructura en el nombre
-        30DISTRITO-DIAMESAÑO-ACTAENTREGA(300X-110619-ACTAENTREGA) </h6>
+        30DD-MES-AÑO(30DD-06-2019) </h6>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
 
             <br>
