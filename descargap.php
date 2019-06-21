@@ -23,14 +23,10 @@
         $allowed =  array('pdf','PDF');
         if((!in_array($ext,$allowed))){
            
-           echo "<script>alert('El Docuneto no tiene el formato PDF solicitado y/o no ha asignado ningún archivo');</script>";
+           echo "<script>alert('El Documento no tiene el formato PDF solicitado y/o no ha asignado ningún archivo');</script>";
         }else{
 
-          $mes=date('m');
-          $año=date('Y');
-
-
-
+        
         $sql3="select count(idpadron) as contador from padron where day(now()) and YEAR(NOW());";
                 $query = $con->query($sql3);
                 $r=$query->fetch_array();
@@ -45,7 +41,7 @@
 
 
         }else{
-            echo "<script>alert('Ya se ha registrado el Acuse de Entrega Recepción de este periodo!');window.location='principal2.php';</script>";
+            echo "<script>alert('Ya se ha registrado el Acuse de Entrega Recepción de este periodo');window.location='principal2.php';</script>";
         }
 
     
