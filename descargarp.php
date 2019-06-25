@@ -63,6 +63,12 @@ font-size: 30px;
 color: #c431a6; 
 text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 2px 0 #dee1e8, 2px 2px 0 #dee1e8, 1px 1px #dee1e8, 2px 2px #dee1e8, 3px 3px #dee1e8, 4px 4px #dee1e8, 5px 5px #dee1e8; 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
 }
+
+@media screen and (max-width: 400px) {
+  footer {
+    display: none;
+  }}
+
   </style>
 <body>
 
