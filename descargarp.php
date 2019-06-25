@@ -55,6 +55,14 @@ include "conexion.php";
     font-size: 30px;
     font: italic; 
   }
+  .titulog{
+ 
+font-family:Arial; 
+font-weight:bold; 
+font-size: 30px; 
+color: #c431a6; 
+text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 2px 0 #dee1e8, 2px 2px 0 #dee1e8, 1px 1px #dee1e8, 2px 2px #dee1e8, 3px 3px #dee1e8, 4px 4px #dee1e8, 5px 5px #dee1e8; 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
+}
   </style>
 <body>
 
@@ -68,9 +76,10 @@ $bandera=false;?>
         <form method="get" action="">
          <div class="form-group" style="width: 100%;">
 
-                  <label>*</label> <label for="nombre">DESCARGUE EL PADRÓN</label>
-                  <a class="form-control" href="padron/padron_2019_10_06.rar" download>
-                  <CENTER><img  src="img/dowload.png" alt="descargar" width="30" height="30" ></CENTER>
+                  <label>*</label> <label for="nombre" class="titulog">DESCARGUE EL PADRÓN ELECTORAL</label>
+                  <BR><BR>
+                  <a   href="padron/padron_2019_10_06.rar" download >
+                  <CENTER><img  src="img/despadron.png" alt="descargar" width="400" height="400" ></CENTER>
                   </a>
         </div>
                  
@@ -84,7 +93,16 @@ $bandera=false;?>
 
   <br>   
   
+  <footer style="background-color: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color:#ECF0F1; color:#17202A">
+  
   <?php include "piepagina.php"; ?>
+ </footer> 
+  
   
   
 </body>
