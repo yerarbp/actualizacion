@@ -75,29 +75,39 @@ font-size: 30px;
 color: #c431a6; 
 text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 2px 0 #dee1e8, 2px 2px 0 #dee1e8, 1px 1px #dee1e8, 2px 2px #dee1e8, 3px 3px #dee1e8, 4px 4px #dee1e8, 5px 5px #dee1e8; 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
 }
+
+@media screen and (max-width: 400px) {
+  footer {
+    display: none;
+  }
+}
     </style>
     <body>
          <?php include "menue.php"; ?>
 
-         
+         <BR>
         <h3 align="center" class="titulog">PADRÓN ELECTORAL </h3>
                 <div class="container" align="center" style="border:1px solid:#C0BCBC;">
             <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
-              <div class="form-group" style="width: 50%;">
-             <label for="nombre">Acta de entrega, recepción y devolución del Padrón
-                   Electoral del Registro Federal de Electores</label>
-                  <a class="form-control" href="document/descarga_padron.docx" download>
-                  <img  src="img/dowload.png" alt="descargar" width="30" height="30" >
+              <div class="form-group" style="width: 60%;">
+                
+       
+             <label for="nombre">Descargue Acta de entrega, recepción y devolución del Padrón
+                   Electoral del Registro Federal de Electores.</label>
+
+          
+
+                  <a  href="document/descarga_padron.docx" download>
+                  <img  src="img/dowload.png" alt="descargar" width="50" height="50" >
                   </a>
 
                   <br> <br>
 
               <label for="entidad">Adjunte Acuse PDF del Acta de entrega, recepción y devolución del Padrón
-                  Electoral del Registro Federal de Electores:</label>
+                  Electoral del Registro Federal de Electores.</label>
 
-               <h6 align="center"> El archivo de acuse debe tener la estructura en el nombre
-        30DD-MES-AÑO(30DD-06-2019) </h6>
+               <h6 align="center"> Nombre: 30DD-MES-AÑO(30DD-06-2019) </h6>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
 
             <br>
