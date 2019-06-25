@@ -66,12 +66,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    
+    <style type="text/css">
+    .titulog{
+ 
+font-family:Arial; 
+font-weight:bold; 
+font-size: 30px; 
+color: #c431a6; 
+text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 2px 0 #dee1e8, 2px 2px 0 #dee1e8, 1px 1px #dee1e8, 2px 2px #dee1e8, 3px 3px #dee1e8, 4px 4px #dee1e8, 5px 5px #dee1e8; 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
+}
+    </style>
     <body>
          <?php include "menue.php"; ?>
 
          
-        <h3 align="center">Padrón Electoral</h3>
+        <h3 align="center" class="titulog">PADRÓN ELECTORAL </h3>
                 <div class="container" align="center" style="border:1px solid:#C0BCBC;">
             <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
