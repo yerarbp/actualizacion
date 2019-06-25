@@ -89,6 +89,15 @@ include "conexion.php";
     font-size: 30px;
     font: italic; 
   }
+
+  .titulog{
+ 
+font-family:Arial; 
+font-weight:bold; 
+font-size: 30px; 
+color: #c431a6; 
+text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 2px 0 #dee1e8, 2px 2px 0 #dee1e8, 1px 1px #dee1e8, 2px 2px #dee1e8, 3px 3px #dee1e8, 4px 4px #dee1e8, 5px 5px #dee1e8; 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
+}
   </style>
 <body>
 
@@ -98,11 +107,12 @@ $bandera=false;?>
  
       <div class="container" align="center" style="border:1px solid:#C0BCBC;">
         <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
+        <BR>
 
-             <h3 align="center">ADJUNTE LOS ACUSES CORRESPONDIENTES </h3>
+        <h3 align="center" class="titulog">ADJUNTE LOS ACUSES CORRESPONDIENTES </h3>
         <h6 align="center"> Los archivos son en formato PDF</h6> <br>
 
-         <div class="form-group" style="width: 50%;">
+         <div class="form-group" style="width:50%;">
 
           <label for="entidad">Actualización del Padrón Electoral:</label>
             <h6 align="center"> El archivo de acuse debe tener la estructura en el nombre
