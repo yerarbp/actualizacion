@@ -121,14 +121,14 @@ $bandera=false;?>
 
          <div class="form-group" style="width:60%;">
 
-          <label for="entidad">Adjunte acta de Actualización del Padrón Electoral:</label>
+          <label for="entidad">Adjunte Acta de Actualización del Padrón Electoral:</label>
             <h6 align="center" >Nombre: 30DD-FECHA ACTUALIZACIÓN(ddmmaa)-A  30DD-210619-A </h6> <br>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
             
 
                   <br> <br>
 
-              <label for="entidad">Adjunte acta de Borrado de Dispositivos de Almacenamiento :</label>
+              <label for="entidad">Adjunte Acta de Borrado de Dispositivos de Almacenamiento:</label>
               <h6 align="center"> Nombre: 30DD-FECHA ACTUALIZACIÓN(ddmmaa)-B  30DD-210619-B </h6> <br>
                   <input class="form-control" type="file" id="acuse2" name="acuse2">
 
