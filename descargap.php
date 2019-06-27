@@ -96,11 +96,26 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
              <label for="nombre">Descargue Acta de entrega, recepción y devolución del Padrón
                    Electoral del Registro Federal de Electores.</label>
 
-          
+            <?php
+              $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario";
+                $query = $con->query($sql3);
+                $r=$query->fetch_array();
+            $distrito=$r["distrito_iddistrito"];
 
-                  <a  href="document/descarga_padron.docx" download>
+           $liga="document/".$distrito.".docx"; 
+
+            ?>
+      
+
+          <a  href=" <?php echo $liga ?>" download>
                   <img  src="img/dowload.png" alt="descargar" width="50" height="50" >
                   </a>
+
+                  <!--<a  href="document/descarga_padron.docx" download>
+                  <img  src="img/dowload.png" alt="descargar" width="50" height="50" >
+                  </a>-->
+
+
 
                   <br> <br>
 
