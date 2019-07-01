@@ -116,7 +116,6 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
                   </a>-->
 
 
-
                   <br> <br>
 
               <label for="entidad">Adjunte Acuse PDF del Acta de entrega, recepción y devolución del Padrón
