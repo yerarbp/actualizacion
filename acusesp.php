@@ -116,20 +116,21 @@ $bandera=false;?>
         <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
         <BR>
 
-        <h3 align="center" class="titulog">ADJUNTE LOS ACUSES CORRESPONDIENTES </h3>
-        <h6 align="center"> Los archivos son en formato PDF</h6> <br>
+       
 
          <div class="form-group" style="width:60%;">
+           <h3 align="center" class="titulog">ADJUNTE LOS ACUSES CORRESPONDIENTES </h3>
+        <h6 align="center"> Los archivos son en formato PDF</h6> <br>
 
-          <label for="entidad">Adjunte Acta de Actualización del Padrón Electoral:</label>
+          <label for="entidad">Adjunte Control de Actualización del Padrón:</label>
             <h6 align="center" >Nombre: 30DD-FECHA ACTUALIZACIÓN(ddmmaa)-A  30DD-210619-A </h6> <br>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
             
 
                   <br> <br>
 
-              <label for="entidad">Adjunte Acta de Borrado de Dispositivos de Almacenamiento:</label>
-              <h6 align="center"> Nombre: 30DD-FECHA ACTUALIZACIÓN(ddmmaa)-B  30DD-210619-B </h6> <br>
+              <label for="entidad">Adjunte Acta y Evidencia de Borrado Seguro:</label>
+              <h6 align="center"> Nombre: 30DD-FECHA BORRADO(ddmmaa)-B  30DD-210619-B </h6> <br>
                   <input class="form-control" type="file" id="acuse2" name="acuse2">
 
             <br>
