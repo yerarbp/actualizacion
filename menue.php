@@ -57,13 +57,15 @@
 
                 </ul>
 
+
+
             
                       <ul class="nav navbar-nav">
             <li class="dropdown" style="font-size:13px;">
             <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-book"> </span>&nbsp;PLANTILLAS DE ACUSES <span class="caret"> </span></a>  
               <ul class="dropdown-menu" >
-                 <li><a href="#"> Acta de Actualización del Padrón Electoral </a></li>
-                 <li><a href="#"> Acta de Borrado de Dispositivos de Almacenamiento </a></li>
+                 <li><a href="document/Control de Actualizacion del Padron.xlsx"> Control de Actualizacion del Padron </a></li>
+                 <li><a href="document/Acta y Evidencia de Borrado Seguro.doc"> Acta y Evidencia de Borrado Seguro </a></li>
                  
           </li>
           </ul>
