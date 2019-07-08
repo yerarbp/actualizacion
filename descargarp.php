@@ -84,7 +84,7 @@ $bandera=false;?>
 
                   <label>*</label> <label for="nombre" class="titulog">DESCARGUE EL PADRÓN ELECTORAL</label>
                   <BR><BR>
-                  <a   href="padron/padron_2019_10_06.rar" download >
+                  <a   href="VERACRUZ-1-1-6082529-49410875.txt.gz.srn" download >
                   <CENTER><img  src="img/despadron.png" alt="descargar" width="400" height="400" ></CENTER>
                   </a>
         </div>
