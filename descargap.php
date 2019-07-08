@@ -86,40 +86,39 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
          <?php include "menue.php"; ?>
 
          <BR>
-        <h3 align="center" class="titulog">PADRÓN ELECTORAL </h3>
+       
                 <div class="container" align="center" style="border:1px solid:#C0BCBC;">
             <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
               <div class="form-group" style="width: 60%;">
                 
-       
-             <label for="nombre">Descargue Acta de entrega, recepción y devolución del Padrón
-                   Electoral del Registro Federal de Electores.</label>
+         <h3 align="center" class="titulog">PADRÓN ELECTORAL </h3> <br>
+             <label for="nombre">Descargue Acta de Descarga de Padrón Electoral </label>
+             <br>
 
             <?php
-              $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario";
-                $query = $con->query($sql3);
-                $r=$query->fetch_array();
-            $distrito=$r["distrito_iddistrito"];
+             // $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario";
+                //$query = $con->query($sql3);
+               // $r=$query->fetch_array();
+           // $distrito=$r["distrito_iddistrito"];
 
-           $liga="document/".$distrito.".docx"; 
+          // $liga="document/".$distrito.".docx"; 
 
             ?>
       
 
-          <a  href=" <?php echo $liga ?>" download>
-                  <img  src="img/dowload.png" alt="descargar" width="50" height="50" >
-                  </a>
-
-                  <!--<a  href="document/descarga_padron.docx" download>
+          <!--<a  href=" <?php echo $liga ?>" download>
                   <img  src="img/dowload.png" alt="descargar" width="50" height="50" >
                   </a>-->
 
+                  <a  href="document/Acta de Descarga de Padron Electoral.docx" download>
+                  <img  src="img/dowload.png" alt="descargar" width="80" height="80" >
+                  </a>
 
-                  <br> <br>
 
-              <label for="entidad">Adjunte Acuse PDF del Acta de entrega, recepción y devolución del Padrón
-                  Electoral del Registro Federal de Electores.</label>
+                  <br> <br><br><br>
+
+              <label for="entidad">Adjunte Acuse PDF del Acta de Descarga de Padrón Electoral</label>
 
                <h6 align="center"> Nombre: 30DD-MES-AÑO(30DD-06-2019) </h6>
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
