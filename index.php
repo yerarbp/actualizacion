@@ -25,7 +25,7 @@
 
   <div class="container" align="center">
 	<div class="logo" align="center"><img src="img/INE.JPG" width="200" height="200"></div>
-    <h2 class="form-signin-heading">Actualización al Padron</h2>
+    <h2 class="form-signin-heading">Actualización al Padrón</h2>
       <form class="form-signin role="form" name="login" action="login.php" method="post"">
       
         <h4 class="form-signin-heading">Sistema de información</h4>
