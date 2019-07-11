@@ -236,15 +236,15 @@
   </form>  
 <br>
   
- <footer style="background-color: black;
-  position: absolute;
+  <footer style="background-color: black;
+  position:relative;
   bottom: 0;
   width: 100%;
   height: 40px;
   background-color:#ECF0F1; color:#17202A">
   
   <?php include "piepagina.php"; ?>
- </footer> 
+ </footer>  
 
 
 </body>
