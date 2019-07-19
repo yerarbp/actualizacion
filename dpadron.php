@@ -143,6 +143,7 @@
         <thead>
             <tr style="color:#FFFFFF;">
                 <th>Fecha de descarga</th>
+                <th>NUM</th>
                 <th>Distrito</th>
                 <th>Padrón Descargado </th>
                 <th>Acuse de Descarga del Padrón </th>
@@ -169,6 +170,7 @@
             $sql="select distrito_iddistrito from distrito_encargado where encargadorm_idencargadorm=$idusuario;";
                 $query = $con->query($sql);
                  $r=$query->fetch_array();
+                
                 $iddistrito=$r["distrito_iddistrito"];
              
              $sql="select * from distrito where iddistrito=$iddistrito;";
@@ -177,6 +179,7 @@
                  $nombredistrito=$r["nombredistrito"];
 
               echo "<td>".$fecha."</td>";
+              echo "<td>".$iddistrito."</td>";
               echo "<td>".$nombredistrito."</td>";
             ////////////////////////////////////////////////////////////////////////////////////////////////////
               if($reporte1!=''){ 
@@ -254,7 +257,7 @@
 <br>
   
  <footer style="background-color: black;
-  position: absolute;
+  position:relative;
   bottom: 0;
   width: 100%;
   height: 40px;
