@@ -27,7 +27,7 @@
         }else{
 
         
-         $sql3="select count(idpadron) as contador from padron where day(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario; ";
+       $sql3="select count(idpadron) as contador from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario; ";
                 $query = $con->query($sql3);
                 $r=$query->fetch_array();
                 $contador=$r["contador"];
@@ -35,7 +35,7 @@
         if($contador<1){
              move_uploaded_file($ruta,$destino);
               //move_uploaded_file($ruta2,$destino2); 
-               $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM) VALUES('$fecha','$hora','$destino', '$idusuario');");
+               $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM,dpadron) VALUES('$fecha','$hora','$destino', '$idusuario',0);");
                $query1 = $con -> query($sql);
                 echo "<script>alert('Los registros se han guardado con éxito!');window.location='descargarp.php';</script>";
 
@@ -124,6 +124,7 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
                   <input class="form-control" type="file" id="acuse1" name="acuse1">
 
             <br>
+               
 
                <input type="submit" class="btn btn-primary"   id="guardar" name="guardar" id="guardar" value="GUARDAR">
                     </button>
