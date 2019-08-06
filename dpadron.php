@@ -145,8 +145,8 @@
                 <th>Fecha de descarga</th>
                 <th>NUM</th>
                 <th>Distrito</th>
-                <th>Padrón Descargado </th>
                 <th>Acuse de Descarga del Padrón </th>
+                <th>Padrón Descargado </th>
                 <th>Fecha de carga de acuses</th>
                 <th> Actualización del Padrón</th>
                 <th> Borrado de Memorias</th>
@@ -164,6 +164,7 @@
 
               $idusuario=$fila->encargadoRM_idencargadoRM;
               $reporte1=$fila->ruta1;
+              $dpadron=$fila->dpadron;
               $fecha=$fila->fecha;
 
 
@@ -186,15 +187,35 @@
                 ?>
 
                 <td> SI</td>
-                <td> SI</td>
+           
              <?php
              }else{
               ?>
               <td> NO </td>
-               <td> NO </td>
+           
 
               <?php
+
               }
+
+
+               if($dpadron==1){ 
+                ?>
+
+                <td> SI</td>
+           
+             <?php
+             }else{
+              ?>
+              <td> NO </td>
+           
+
+              <?php
+
+              }
+
+
+
                $sql= "select * from padronf where encargadoRM_idencargadoRM=$idusuario". $criterio2;
                   $query = $con->query($sql);
                  $r=$query->fetch_array();
