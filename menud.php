@@ -64,7 +64,6 @@
                  <li><a href="siirfesemanalF.php"> SIIRFE Semanal  </a></li>
                  <li><a href="dpadron.php"> Descarga del Padrón </a></li>
                  
-                 <li><a href="document/PRUEBA/texto.docx"> PRUEBA DE SERVIDOR </a></li>
           </li>
           </ul>
 
