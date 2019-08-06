@@ -7,10 +7,13 @@ include "conexion.php";
      setlocale(LC_ALL,"es_MX.UTF-8");
            $fecha= date('Y-m-d');
 
-    $sql="select count(*) as cont from padron where fecha='$fecha' and encargadoRM_idencargadoRM=$idusuario;";
+
+
+   $sql="select count(*) as cont from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario;";
        $query = $con->query($sql);
         $r=$query->fetch_array();
         $encontrado=$r["cont"];
+
 
 
 
@@ -23,6 +26,28 @@ include "conexion.php";
 		    print "<script>alert('Acceso restringido y/o ha registrado los acuses'); window.location='index.php';</script>";
 	
 		}
+
+
+ if($_POST['guardar']){ 
+
+      $dpadron=$_POST['dpadron']; 
+
+       $sql="select idpadron from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario";
+       $query = $con->query($sql);
+        $r=$query->fetch_array();
+        $idpadron=$r["idpadron"];
+
+
+      $sql="UPDATE padron  SET dpadron = '1' WHERE (idpadron = '$idpadron')";
+       $query1 = $con -> query($sql);
+
+       print "<script>alert('La primera etapa ha concluido correctamente'); window.location='principal2.php';</script>";
+      
+
+     }
+     
+
+
 
     
 		?>
@@ -79,7 +104,8 @@ $bandera=false;?>
     <!-- BUSCADOR-->
  
       
-        <form method="get" action="">
+          <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
+
          <div class="form-group" style="width: 100%;">
 
                   <label>*</label> <label for="nombre" class="titulog">DESCARGUE EL PADRÓN ELECTORAL</label>
@@ -87,7 +113,29 @@ $bandera=false;?>
                   <a   href="document/VERACRUZ-1-1-6082529-49410875.txt.gz.srn" download >
                   <CENTER><img  src="img/despadron.png" alt="descargar" width="400" height="400" ></CENTER>
                   </a>
+
+                  <br>
+
+                  <label for="entidad">Estatus de la descarga del Padrón </label>
+               <select name="dpadron"  id="dpadron" class="form-control" rows="5" readonly="readonly" > 
+                <option value="0"> NO  </option>
+                <option value="2"> SI  </option>
+               </select>
+           
+
+              
+                   
         </div>
+
+          <div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-5"> <input type="submit" class="btn btn-primary"   id="guardar" name="guardar" id="guardar" value="GUARDAR"></div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+            
                  
         </form>
               
@@ -100,7 +148,7 @@ $bandera=false;?>
   <br>   
   
   <footer style="background-color: black;
-  position: absolute;
+  position:relative;
   bottom: 0;
   width: 100%;
   height: 40px;
