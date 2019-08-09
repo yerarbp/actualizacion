@@ -4,7 +4,7 @@
   $nivelp=$_SESSION['nivelp'][0]['nivelp'];
  
     
-    if(($idusuario!='') && ($nivelp==2)) {
+    if(($idusuario!='') && ($nivelp==0)) {
     } 
     else{ 
     print "<script>alert('Acceso restringido, no ha iniciado sesión'); window.location='index.php';</script>";
@@ -78,15 +78,89 @@
 
 <h4 align="center" class="let"> ACOMULADOS DE REMESAS </h4>
 
+
+<div style="border-style: ridge; margin: 5px; padding: 6px; border-color: #97729C;">
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+     <div class="col-sm-2">
+    </div>
+    <div class="col-sm-4">
+      <label for="distrito">Año Anterior: </label>
+      <input type="text" name="">
+    </div>
+    </div>
+
+    <div class="row">
+      <hr align="left" noshade="noshade" size="2" width="auto" />
+
+      <div class="col-sm-4">
+      <label for="distrito">Folio Inicial: </label>
+      <input type="text" name="">
+      </div>
+      <div class="col-sm-4">
+      <label for="distrito">Folio Final: </label>
+      <input type="text" name="">
+      </div>
+
+      <div class="col-sm-4">
+      <label for="distrito">Total de Folios: </label>
+      <input type="text" name="">
+      </div>
+
+    </div>
+   <br>
+    <div class="row">
+    <div class="col-sm-2">
+    </div>
+     <div class="col-sm-2">
+    </div>
+
+    <div class="col-sm-4">
+      <label for="distrito">Año Actual: </label>
+      <input type="text" name="">
+       <hr align="left" noshade="noshade" size="2" width="auto" />
+    </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-4">
+      <label for="distrito">Folio Inicial: </label>
+      <input type="text" name="">
+      </div>
+      <div class="col-sm-4">
+      <label for="distrito">Folio Final: </label>
+      <input type="text" name="">
+      </div>
+
+      <div class="col-sm-4">
+      <label for="distrito">Total de Folios: </label>
+      <input type="text" name="">
+      </div>
+
+
+  </div>
+
+
+
+
+</div>
+
+</div>
+
+
 <div style="border-style: ridge; margin: 5px; padding: 6px; border-color: #676362";>
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-      <label for="distrito">Acomulado de la remesa pasada: </label>
-      <input type="text" name="">
+      <center><label for="distrito">Acomulado de la remesa pasada: </label> </center>
+     <center> <input type="text" name=""></center>
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-sm-2">
@@ -132,7 +206,7 @@
       <input type="text" name="">
     </div>
     <div class="col-sm-2">
-      <label for="distrito">CURP :</label>
+      <label for="distrito">CURP :</label> <br>
       <input type="text" name="">
     </div>
     <div class="col-sm-2">
@@ -219,14 +293,16 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-2">
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <label for="distrito">Credencial duplicada :</label>
       <input type="text" name="">
     </div>
-     <div class="col-sm-3">
+     <div class="col-sm-2">
       <label for="distrito">Credencial de canje:</label>
       <input type="text" name="">
     </div>
@@ -235,76 +311,7 @@
 </div>
   
 </div>
-<div style="border-style: ridge; margin: 5px; padding: 6px; border-color: #97729C;">
- <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2">
-    </div>
-     <div class="col-sm-2">
-    </div>
-    <div class="col-sm-4">
-      <label for="distrito">Año Anterior: </label>
-      <input type="text" name="">
-    </div>
-    </div>
 
-    <div class="row">
-      <hr align="left" noshade="noshade" size="2" width="auto" />
-
-      <div class="col-sm-4">
-      <label for="distrito">Folio Inicial: </label>
-      <input type="text" name="">
-      </div>
-      <div class="col-sm-4">
-      <label for="distrito">Folio Final: </label>
-      <input type="text" name="">
-      </div>
-
-      <div class="col-sm-4">
-      <label for="distrito">Total de Folios: </label>
-      <input type="text" name="">
-      </div>
-
-    </div>
-   <br>
-    <div class="row">
-    <div class="col-sm-2">
-    </div>
-     <div class="col-sm-2">
-    </div>
-
-    <div class="col-sm-4">
-      <label for="distrito">Año Actual: </label>
-      <input type="text" name="">
-       <hr align="left" noshade="noshade" size="2" width="auto" />
-    </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-4">
-      <label for="distrito">Folio Inicial: </label>
-      <input type="text" name="">
-      </div>
-      <div class="col-sm-4">
-      <label for="distrito">Folio Final: </label>
-      <input type="text" name="">
-      </div>
-
-      <div class="col-sm-4">
-      <label for="distrito">Total de Folios: </label>
-      <input type="text" name="">
-      </div>
-
-
-  </div>
-
-
-
-
-</div>
-
-</div>
 
 <div style="border-style: ridge; margin: 5px; padding: 6px; border-color: #A44BA0;">
 <div class="container-fluid">
@@ -373,7 +380,7 @@
       <input type="text" name="">
     </div>
     <div class="col-sm-2">
-      <label for="distrito">CURP :</label>
+      <label for="distrito">CURP :</label> <br>
       <input type="text" name="">
     </div>
     <div class="col-sm-2">
@@ -477,37 +484,40 @@
       <input type="text" name="">
     </div>
      <div class="col-sm-2">
-      <label for="distrito">Incidencias Registradas:</label>
+      <label for="distrito">Configuración</label>
       <input type="text" name="">
     </div>
     <div class="col-sm-2">
-      <label for="distrito">Configuración:</label>
+      <label for="distrito">Total de Equipo:</label>
       <input type="text" name="">
     </div>
     <div class="col-sm-2">
-      <label for="distrito">Total de Equipos:</label>
+      <label for="distrito">Disponibles:</label>
       <input type="text" name="">
     </div>
 
-  </div>
+  </div> <br>
 
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-2">
+    </div>
+
+    <div class="col-sm-2">
       <label for="distrito">Fichas Entregadas:</label>
       <input type="text" name="">
     </div>
 
-     <div class="col-sm-3">
+     <div class="col-sm-2">
       <label for="distrito">Fichas Atendidas:</label>
       <input type="text" name="">
     </div>
 
-    <div class="col-sm-3">
-      <label for="distrito">Disponibles:</label>
-      <input type="text" name="">
+    <div class="col-sm-2">
+      <label for="distrito"></label>
+      
     </div>
 
 
