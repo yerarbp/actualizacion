@@ -31,8 +31,10 @@ include "conexion.php";
  if($_POST['guardar']){ 
 
       $dpadron=$_POST['dpadron']; 
+       $mes=date('m');
+       
 
-       $sql="select idpadron from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario";
+       $sql="select idpadron from padron where  MONTH(fecha) = $mes and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario";
        $query = $con->query($sql);
         $r=$query->fetch_array();
         $idpadron=$r["idpadron"];
@@ -110,7 +112,7 @@ $bandera=false;?>
 
                   <label>*</label> <label for="nombre" class="titulog">DESCARGUE EL PADRÓN ELECTORAL</label>
                   <BR><BR>
-                  <a   href="document/VERACRUZ-1-1-6082529-49410875.txt.gz.srn" download >
+                  <a   href="document/padron/VERACRUZ-1-1-6089588-1914822413.txt.gz.srn" download >
                   <CENTER><img  src="img/despadron.png" alt="descargar" width="400" height="400" ></CENTER>
                   </a>
 
