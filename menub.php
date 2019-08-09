@@ -37,6 +37,7 @@
 
                  <li><a href="listareported.php" >Reportes de SIIRFE Diario  </a></li>
                  <li><a href="listaincidencias.php" > Reportes de Incidencias  </a></li>
+                 <li><a href="acomulados.php">Acomulados </a></li>
                 
                  
 </li>
