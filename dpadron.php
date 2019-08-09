@@ -4,7 +4,7 @@
   $nivelp=$_SESSION['nivelp'][0]['nivelp'];
  
     
-    if(($idusuario!='') && ($nivelp==2)) {
+    if(($idusuario!='') && ($nivelp==2) || ($idusuario==38)) {
     } 
     else{ 
     print "<script>alert('Acceso restringido, no ha iniciado sesión'); window.location='index.php';</script>";
@@ -33,7 +33,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Descarga del Padrón</title>
+  <title>Registro de la descarga y acuses del padrón</title>
   <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
