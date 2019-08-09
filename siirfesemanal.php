@@ -4,7 +4,7 @@
   $nivelp=$_SESSION['nivelp'][0]['nivelp'];
  
     
-    if(($idusuario!='') && ($nivelp==2)) {
+    if(($idusuario!='') && ($nivelp==1)) {
     } 
     else{ 
     print "<script>alert('Acceso restringido, no ha iniciado sesión'); window.location='index.php';</script>";
@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Descarga del Padrón</title>
+  <title>SIIRFE SEMANAL </title>
   <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,7 +68,7 @@
   </script>
 <body style="width: auto;">
 
-<?php include "menud.php";
+<?php include "menuc.php";
   $idusuario=$_SESSION['usuario'][0]['id'];
    $sql="select * from encargadorm where idencargadoRM=$idusuario;";
 
@@ -81,7 +81,7 @@
 
    <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
-  <h3 align="center" class="let"> Registro de la descarga del padrón y el acuse de reportes </h3>
+  <h3 align="center" class="let"> SIIRFE SEMANAL  </h3>
    <h5 align="center"> * </h5>
    <br>
 
@@ -365,8 +365,8 @@
               $sql="select sum(reemplazo) as reemplazo from reported where modulo_idmodulo=$idmodulo";
               $query = $con->query($sql);
               $r=$query->fetch_array();
-              $reemplazo=$r["reemplazo"];
-              $i+= $reemplazo;
+             $reemplazo=$r["reemplazo"];
+              $ii+= $reemplazo;
               echo "<td>".$reemplazo."</td>";
                //////////////////////////////////////// col 17
               $sql="select sum(cancelados) as cancelados from reported where modulo_idmodulo=$idmodulo";
@@ -623,7 +623,7 @@
           <th style="background:#FEFCFC; border: hidden;" ></th>
           <th style="background:#FEFCFC; border: hidden;" >NÚM DE MÓDULOS</th>
           <?php
-          echo "<th style=background:#D8CACA>". $mo. "</th>";
+         echo "<th style=background:#D8CACA>". $mo. "</th>";
           ?>
          
           <th style="background:#D8CACA; border: hidden;" > </th>
@@ -638,7 +638,7 @@
           echo "<th style=background:#D8CACA>". $f. "</th>";
           echo "<th style=background:#D8CACA>". $g. "</th>";
           echo "<th style=background:#D8CACA>". $h. "</th>";
-          echo "<th style=background:#D8CACA>". $i. "</th>";
+          echo "<th style=background:#D8CACA>". $ii. "</th>";
           echo "<th style=background:#D8CACA>". $j. "</th>";
           echo "<th style=background:#D8CACA>". $k. "</th>";
           echo "<th style=background:#D8CACA>". $l. "</th>";
