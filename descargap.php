@@ -15,6 +15,7 @@
         setlocale(LC_ALL,"es_MX.UTF-8");
            $fecha= date('Y-m-d');
            $hora= date('H:i:s');
+          $mes=date('m');
 
         $acuse1=$_FILES["acuse1"]["name"];
         $ruta=$_FILES["acuse1"]["tmp_name"];
@@ -27,7 +28,7 @@
         }else{
 
         
-       $sql3="select count(idpadron) as contador from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario; ";
+       $sql3="select count(idpadron) as contador from padron where MONTH(fecha) = $mes  AND YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario; ";
                 $query = $con->query($sql3);
                 $r=$query->fetch_array();
                 $contador=$r["contador"];
@@ -37,11 +38,11 @@
               //move_uploaded_file($ruta2,$destino2); 
                $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM,dpadron) VALUES('$fecha','$hora','$destino', '$idusuario',0);");
                $query1 = $con -> query($sql);
-                echo "<script>alert('Los registros se han guardado con éxito!');window.location='descargarp.php';</script>";
+               echo "<script>alert('Los registros se han guardado con éxito!');window.location='descargarp.php';</script>";
 
 
         }else{
-         echo "<script>alert('Ya se ha registrado el Acuse de Entrega Recepción de este periodo');window.location='principal2.php';</script>";
+        echo "<script>alert('Ya se ha registrado el Acuse de Entrega Recepción de este periodo');window.location='principal2.php';</script>";
         }
 
     
@@ -97,23 +98,23 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
              <br>
 
             <?php
-             // $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario";
-                //$query = $con->query($sql3);
-               // $r=$query->fetch_array();
-           // $distrito=$r["distrito_iddistrito"];
+              $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario";
+                $query = $con->query($sql3);
+                $r=$query->fetch_array();
+           $distrito=$r["distrito_iddistrito"];
 
-          // $liga="document/".$distrito.".docx"; 
+           $liga="document/actas/".$distrito.".pdf"; 
 
             ?>
       
 
-          <!--<a  href=" <?php echo $liga ?>" download>
+          <a  href=" <?php echo $liga ?>" download>
                   <img  src="img/dowload.png" alt="descargar" width="50" height="50" >
-                  </a>-->
-
-                  <a  href="document/Acta de Descarga de Padron Electoral.docx" download>
-                  <img  src="img/dowload.png" alt="descargar" width="80" height="80" >
                   </a>
+
+                  <!--<a  href="document/Acta de Descarga de Padron Electoral.docx" download>
+                  <img  src="img/dowload.png" alt="descargar" width="80" height="80" >
+                  </a>-->
 
 
                   <br> <br><br><br>
