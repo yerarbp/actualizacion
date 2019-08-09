@@ -64,14 +64,26 @@
             <li class="dropdown" style="font-size:13px;">
             <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-book"> </span>&nbsp;PLANTILLAS DE ACUSES <span class="caret"> </span></a>  
               <ul class="dropdown-menu" >
-                 <li><a href="document/Control de Actualizacion del Padron.xlsx"> Control de Actualizacion del Padron </a></li>
-                 <li><a href="document/Acta y Evidencia de Borrado Seguro.doc"> Acta y Evidencia de Borrado Seguro </a></li>
+                 <li><a href="document/anexos/Control de Actualizacion del Padron.xlsx" download> Control de Actualizacion del Padrón </a></li>
+                 <li><a href="document/anexos/Acta y Evidencia de Borrado Seguro.doc" download> Acta y Evidencia de Borrado Seguro </a></li>
+                    <li><a href="document/anexos/manual.pdf" download> Manual de operación </a></li>
                  
           </li>
           </ul>
 
                 </ul>
-             
+
+              <ul class="nav navbar-nav">
+            <li class="dropdown" style="font-size:13px;">
+            <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-check"> </span>&nbsp;REPORTES <span class="caret"> </span></a>  
+              <ul class="dropdown-menu" >
+               
+                 <li><a href="dpadron.php"> Descarga del Padrón </a></li>
+                 
+          </li>
+          </ul>
+
+                </ul>
 
 
 
