@@ -46,7 +46,7 @@
 
                 </ul>
 
-             <ul class="nav navbar-nav">
+             <!--<ul class="nav navbar-nav">
             <li class="dropdown" style="font-size:13px;">
             <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-eye-close"> </span>&nbsp;ACOMULADOS <span class="caret"> </span></a>  
               <ul class="dropdown-menu" >
@@ -55,7 +55,7 @@
           </li>
           </ul>
 
-                </ul>
+                </ul>-->
 
             <ul class="nav navbar-nav">
             <li class="dropdown" style="font-size:13px;">
