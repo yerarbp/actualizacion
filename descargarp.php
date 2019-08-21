@@ -7,6 +7,7 @@ include "conexion.php";
      setlocale(LC_ALL,"es_MX.UTF-8");
            $fecha= date('Y-m-d');
 
+         
 
 
    $sql="select count(*) as cont from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario;";
@@ -32,7 +33,7 @@ include "conexion.php";
 
       $dpadron=$_POST['dpadron']; 
        $mes=date('m');
-       
+
 
        $sql="select idpadron from padron where  MONTH(fecha) = $mes and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario";
        $query = $con->query($sql);
@@ -42,6 +43,11 @@ include "conexion.php";
 
       $sql="UPDATE padron  SET dpadron = '1' WHERE (idpadron = '$idpadron')";
        $query1 = $con -> query($sql);
+
+
+
+
+
 
        print "<script>alert('La primera etapa ha concluido correctamente'); window.location='principal2.php';</script>";
       
@@ -120,8 +126,8 @@ $bandera=false;?>
 
                   <label for="entidad">Estatus de la descarga del Padrón </label>
                <select name="dpadron"  id="dpadron" class="form-control" rows="5" readonly="readonly" > 
-                <option value="0"> NO  </option>
-                <option value="2"> SI  </option>
+                <option value="0"> NO CONCLUIDO  </option>
+                <option value="2"> CONCLUIDO  </option>
                </select>
            
 
