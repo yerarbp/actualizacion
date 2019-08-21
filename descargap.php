@@ -11,11 +11,20 @@
 
 
     if($_POST['guardar']){
+      $estado=30;
+
+        $sql2="select  distrito_iddistrito  from distrito_encargado WHERE encargadoRM_idencargadoRM=$idusuario;";
+                $query = $con->query($sql2);
+                $r=$query->fetch_array();
+                $numdistrito=$r["distrito_iddistrito"];
 
         setlocale(LC_ALL,"es_MX.UTF-8");
            $fecha= date('Y-m-d');
            $hora= date('H:i:s');
           $mes=date('m');
+          $año=date('Y');
+
+    $nuevaruta=$estado.$numdistrito."-".$mes."-".$año;
 
         $acuse1=$_FILES["acuse1"]["name"];
         $ruta=$_FILES["acuse1"]["tmp_name"];
@@ -24,7 +33,7 @@
         $allowed =  array('pdf','PDF');
         if((!in_array($ext,$allowed))){
            
-           echo "<script>alert('El Documento no tiene el formato PDF solicitado y/o no ha asignado ningún archivo');</script>";
+           //echo "<script>alert('El Documento no tiene el formato PDF solicitado y/o no ha asignado ningún archivo');</script>";
         }else{
 
         
@@ -34,11 +43,35 @@
                 $contador=$r["contador"];
 
         if($contador<1){
-             move_uploaded_file($ruta,$destino);
-              //move_uploaded_file($ruta2,$destino2); 
-               $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM,dpadron) VALUES('$fecha','$hora','$destino', '$idusuario',0);");
-               $query1 = $con -> query($sql);
-               echo "<script>alert('Los registros se han guardado con éxito!');window.location='descargarp.php';</script>";
+
+         move_uploaded_file($ruta,$destino);
+
+       // rename ($destino, "document/acuses/actaentrega/$nuevaruta.pdf");
+             
+
+     echo  $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM,dpadron) VALUES('$fecha','$hora','$destino', '$idusuario',0);");
+      $query1 = $con -> query($sql);
+
+      $sql3="select MAX(idpadron) AS valor  from padron WHERE  encargadoRM_idencargadoRM=$idusuario";
+                $query = $con->query($sql3);
+                $r=$query->fetch_array();
+                $ultimoregistro=$r["valor"];
+
+
+                $sql2="select  ruta1  from padron WHERE idpadron=$ultimoregistro;";
+                $query = $con->query($sql2);
+                $r=$query->fetch_array();
+                 $ruta1=$r["ruta1"];
+               rename ($ruta1, "document/acuses/actaentrega/$nuevaruta.pdf"); 
+
+           echo  $sql4="UPDATE  padron SET ruta1 = 'document/acuses/actaentrega/$nuevaruta.pdf' WHERE (idpadron = '$ultimoregistro');";
+             $query1 = $con -> query($sql4);
+
+            echo "<script>alert('Los registros se han guardado con éxito!');window.location='descargarp.php';</script>";
+
+
+
+              
 
 
         }else{
@@ -83,7 +116,7 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
   }
 }
     </style>
-    <body>
+    <body onbeforeunload="return myFunction()">
          <?php include "menue.php"; ?>
 
          <BR>
@@ -131,6 +164,7 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
                     </button>
                                     
                     <a href="principal2.php" class="btn btn-success" role="button">CANCELAR</a>
+                    
           </div>
           </form>
 
@@ -149,7 +183,6 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
   
  
 
-    </body>
+</body>
 </html>
-
 
