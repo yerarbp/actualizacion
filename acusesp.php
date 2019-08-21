@@ -1,24 +1,35 @@
 <?php  
 session_start(); 
 include "conexion.php";
-	 $idusuario=$_SESSION['usuario'][0]['id'];
+   $idusuario=$_SESSION['usuario'][0]['id'];
     $nivelp=$_SESSION['nivelp'][0]['nivelp'];
      setlocale(LC_ALL,"es_MX.UTF-8");
       $fecha= date('Y-m-d');
-
-
-		if(($idusuario!='') && ($nivelp==3)){
-		?>
+    if(($idusuario!='') && ($nivelp==3)){
+    ?>
     <?php
-      	} 
-
-		else{
-		    print "<script>alert('Acceso restringido y/o ha registrado los acuses'); window.location='index.php';</script>";
-	
-		}
-
-
+        } 
+    else{
+        print "<script>alert('Acceso restringido y/o ha registrado los acuses'); window.location='index.php';</script>";
+  
+    }
  if($_POST['guardar']){
+
+  $estado=30;
+
+        $sql2="select  distrito_iddistrito  from distrito_encargado WHERE encargadoRM_idencargadoRM=$idusuario;";
+                $query = $con->query($sql2);
+                $r=$query->fetch_array();
+                $numdistrito=$r["distrito_iddistrito"];
+
+        setlocale(LC_ALL,"es_MX.UTF-8");
+           $fecha= date('Y-m-d');
+           $hora= date('H:i:s');
+          $mes=date('m');
+          $año=date('Y');
+
+    $nuevarutaA=$estado.$numdistrito."-".$mes."-".$año."A";
+    $nuevarutaB=$estado.$numdistrito."-".$mes."-".$año."B";
 
         setlocale(LC_ALL,"es_MX.UTF-8");
            $fecha= date('Y-m-d');
@@ -28,41 +39,61 @@ include "conexion.php";
        $query = $con->query($sql);
         $r=$query->fetch_array();
         $maximo=$r["maximo"];
-
         $acuse1=$_FILES["acuse1"]["name"];
         $ruta=$_FILES["acuse1"]["tmp_name"];
         $destino="document/acuses/actualizacionp/".$acuse1;
         $ext = pathinfo( $acuse1, PATHINFO_EXTENSION);
-
         $acuse2=$_FILES["acuse2"]["name"];
         $ruta2=$_FILES["acuse2"]["tmp_name"];
         $destino2="document/acuses/borrado/".$acuse2;
         $ext2 = pathinfo( $acuse2, PATHINFO_EXTENSION);
         $allowed =  array('pdf','PDF');
-
         if((!in_array($ext,$allowed)) || (!in_array($ext2,$allowed)) ){
            
            echo "<script>alert('Alguno de los Documentos no tiene el formato PDF solicitado y/o no ha asignado ningún archivo');</script>";
         }else{
           move_uploaded_file($ruta,$destino);
           move_uploaded_file($ruta2,$destino2); 
-
         $sql =("INSERT INTO padronf (fecha, hora, ruta1, ruta2,padron_idpadron, encargadoRM_idencargadoRM) VALUES('$fecha','$hora','$destino','$destino2','$maximo', '$idusuario');");
-
             $query1 = $con -> query($sql);
+
+            ///////////////////////
+
+
+
+
+       ////////////////////////////////////
+
+      $sql3="select MAX(idpadronf) AS valor  from padronf WHERE  encargadoRM_idencargadoRM=$idusuario";
+                $query = $con->query($sql3);
+                $r=$query->fetch_array();
+                $ultimoregistro=$r["valor"];
+
+
+                $sql2="select  ruta1 ,ruta2 from padronf WHERE idpadronf=$ultimoregistro;";
+                $query = $con->query($sql2);
+                $r=$query->fetch_array();
+                $ruta1=$r["ruta1"];
+                $ruta2=$r["ruta2"];
+
+               rename ($ruta1, "document/acuses/actualizacionp/$nuevarutaA.pdf");
+               rename ($ruta2, "document/acuses/borrado/$nuevarutaB.pdf"); 
+
+            echo  $sql5="UPDATE padronf SET ruta1 = 'document/acuses/actualizacionp/$nuevarutaA.pdf', ruta2='document/acuses/borrado/$nuevarutaB.pdf)' WHERE (idpadronf = '$ultimoregistro');";
+             $query1 = $con -> query($sql5);
+
+             ///////////////////////////////////////////////////////////////////////////////////////////
+
+
             echo "<script>alert('Los registros se han guardado con éxito!');window.location='principal2.php';</script>";
-
-
         }
-
     
         }
-
     
-		?>
+    ?>
 
  
-	
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,7 +120,6 @@ include "conexion.php";
     font-size: 30px;
     font: italic; 
   }
-
   .titulog{
  
 font-family:Arial; 
@@ -98,13 +128,11 @@ font-size: 30px;
 color: #c431a6; 
 text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 2px 0 #dee1e8, 2px 2px 0 #dee1e8, 1px 1px #dee1e8, 2px 2px #dee1e8, 3px 3px #dee1e8, 4px 4px #dee1e8, 5px 5px #dee1e8; 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
 }
-
 @media screen and (max-width: 400px) {
   footer {
     display: none;
   }
 }
-
   </style>
 <body>
 
@@ -142,7 +170,7 @@ $bandera=false;?>
           </div>
                  
         </form>
-                  	
+                    
       </div>
   
       
