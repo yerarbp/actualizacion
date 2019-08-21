@@ -45,15 +45,8 @@
 
                 </ul>
 
-<ul class="nav navbar-nav">
-            <li class="dropdown" style="font-size:13px;">
-            <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-copy"> </span>&nbsp;ACTUALIZACIONES <span class="caret"> </span></a>  
-              <ul class="dropdown-menu" >
+ 
 
-                 <li><a href="#" > Actualizar Directorio </a></li>
-                 
-</li>
-</ul>
 
                 </ul>
 
