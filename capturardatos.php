@@ -784,7 +784,7 @@ if($_POST['guardar']){
                             $query = $con->query($sql3);
                             $r=$query->fetch_array();
                            $periodoAntes=$r["periodo_idperiodo"];
-                          // echo "<br>";
+    
 
                          $sql3="SELECT MAX(idperiodo) AS idperiodo FROM periodo;";
                               $query = $con->query($sql3);
