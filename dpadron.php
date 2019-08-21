@@ -15,13 +15,10 @@
             setlocale(LC_ALL,"es_MX.UTF-8");
           $año= date('Y');
            $fechai=$año."-".$mes."-"."01";
-           $fechaf=$año."-".$mes."-"."20";
+           $fechaf=$año."-".$mes."-"."28";
            $criterio=" where fecha BETWEEN "."'".$fechai."'"." and " ."'".$fechaf."'";
             $criterio2=" and fecha BETWEEN "."'".$fechai."'"." and " ."'".$fechaf."'";
-           
-
-
-         
+                    
 
     }
 
@@ -83,7 +80,11 @@
   </script>
 <body style="width: auto;">
 
-<?php include "menud.php";
+<?php if($idusuario==38){
+  include "menue.php";
+}else{
+  include "menud.php";
+}
  
  ?> 
 
@@ -216,7 +217,7 @@
 
 
 
-               $sql= "select * from padronf where encargadoRM_idencargadoRM=$idusuario". $criterio2;
+           $sql= "select * from padronf where encargadoRM_idencargadoRM=$idusuario". $criterio2;
                   $query = $con->query($sql);
                  $r=$query->fetch_array();
                  $reporte2=$r["ruta1"];
