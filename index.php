@@ -25,15 +25,16 @@
 
   <div class="container" align="center">
 	<div class="logo" align="center"><img src="img/INE.JPG" width="200" height="200"></div>
-    <h2 class="form-signin-heading">Actualización al Padrón</h2>
+    <h2 class="form-signin-heading">Actualización del Padrón Electoral de Atención Ciudadana</h2>
+    <h2 class="form-signin-heading"></h2>
       <form class="form-signin role="form" name="login" action="login.php" method="post"">
       
-        <h4 class="form-signin-heading">Sistema de información</h4>
+        <h4 class="form-signin-heading">Ingrese al sistema </h4>
         <label for="inputEmail" class="sr-only">Ingresa usuario</label>
-        <input type="text" id="Ingresausuario" name="nombre" class="form-control" placeholder="Ingresa usuario" required autofocus>
+        <input type="text" id="Ingresausuario" name="nombre" class="form-control" placeholder="Ingresa usuario" required autofocus style="text-align:center";>
         <br>
         <label for="inputPassword" class="sr-only">Contraseña</label>
-        <input type="password" id="inputPassword" class="form-control"  name="contra" placeholder="Password" required>
+        <input type="password" id="inputPassword" class="form-control"  name="contra" placeholder="Password" required style="text-align:center";>
         <div class="checkbox">
           
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
