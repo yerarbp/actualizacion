@@ -468,22 +468,80 @@ from reported where YEAR(NOW()) and distrito_iddistrito=$distritoactual and modu
 <div style="border-style: ridge; margin: 5px; padding: 6px; border-color: #A44BA0;background-color:#D7BDE2">
 <div class="container-fluid">
   <div class="row">
+
+
+    <?php
+
+
+ $sql="select distrito_iddistrito,modulo_idmodulo from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
+                  $query = $con->query($sql);
+                  $r=$query->fetch_array();
+                  $distritoactual=$r["distrito_iddistrito"];
+                  $moduloactual=$r["modulo_idmodulo"];
+///////////////////////////////////////////////////////////////////////////////
+ $sql="select sum(totalfinal) as totalocupados, sum(folionocupados) as totalnoocupados,sum(inscripciones) as totalinscripciones,
+sum(correcion) as totalcorrecion, sum(cambiodom) as totalcambiodom,sum(reposicion) as totalreposicion,
+sum(coreccionddireccion) as totalcoreccionddireccion, sum(reincorporacion) as totalreincorporacion,sum(reemplazo) as totalreemplazo,
+sum(cancelados) as totalcancelados, sum(rechazados) as totalrechazados,sum(curp) as totalcurp,
+sum(solicitudexpedicion) as totalsolicitudexpedicion, sum(solicitudrectificacion) as totalsolicitudrectificacion,sum(demandajucion) as totaldemandajucion, sum(total) as totaltramites,
+sum(actualizacion) as totalactualizacion, sum(otrotipo) as totalotrotipo,sum(importadas) as totalimportadas, sum(exportadas) as totalexportadas,
+sum(entregadas) as totalentregadas, sum(anexas) as totalanexas,sum(reimpresiones) as totalreimpresiones, sum(robo) as totalrobo,
+sum(retiradas) as totalretiradas, sum(sobran) as totalsobran,sum(duplicadas) as totalduplicadas, sum(reimpresion) as totalreimpresion,
+sum(credevte) as totalcredevte, sum(credencialduplicadas) as totalcredencialduplicadas,sum(credencialcanjeadables) as totalcredencialcanjeadables
+from reported where YEAR(NOW()) and distrito_iddistrito=$distritoactual and modulo_idmodulo=$moduloactual and remesa_idremesa<=$remesaActual";
+                  $query = $con->query($sql);
+                  $r=$query->fetch_array();
+                  $totalocupados=$r["totalocupados"];
+                  $totalnoocupados=$r["totalnoocupados"];
+                  $totalinscripciones=$r["totalinscripciones"];
+                  $totalcorrecions=$r["totalcorrecion"];
+                  $totalcambiodom=$r["totalcambiodom"];
+                  $totalreposicion=$r["totalreposicion"];
+                  $totalcoreccionddireccion=$r["totalcoreccionddireccion"];
+                  $totalreincorporacion=$r["totalreincorporacion"];
+                  $totalreemplazo=$r["totalreemplazo"];
+                  $totalcancelados=$r["totalcancelados"];
+                  $totalrechazados=$r["totalrechazados"];
+                  $totalcurp=$r["totalcurp"];
+                  $totalsolicitudexpedicion=$r["totalsolicitudexpedicion"];
+                  $totalsolicitudrectificacion=$r["totalsolicitudrectificacion"];
+                  $totaldemandajucion=$r["totaldemandajucion"];
+                  $totaltramites=$r["totaltramites"];
+                  $totalactualizacion=$r["totalactualizacion"];
+                  $totalotrotipos=$r["totalotrotipo"];
+                  $totalimportadas=$r["totalimportadas"];
+                  $totalexportadas=$r["totalexportadas"];
+                  $totalentregadas=$r["totalentregadas"];
+                  $totalanexas=$r["totalanexas"];
+                  $totalreimpresiones=$r["totalreimpresiones"];
+                  $totalrobo =$r["totalrobo"];
+                  $totalretiradas =$r["totalretiradas"];
+                  $totalsobran=$r["totalsobran"];
+                  $totalduplicadas =$r["totalduplicadas"];
+                  $totalreimpresion =$r["totalreimpresion"];
+                  $totalcredevte =$r["totalcredevte"];
+                  $totalcredencialduplicadas =$r["totalcredencialduplicadas"];
+                  $totalcredencialcanjeadables =$r["totalcredencialcanjeadables"];
+
+
+?>
+
     <div class="col-sm-2">
       <label for="distrito">Remesa Actual: </label>
-      <input type="text" name="" value="<?php print $remesaActual?>" readonly="readonly">
+      <input type="text" name="" value="<?php print $remesaActual?>" readonly="readonly" style="text-align:center";>
     </div>
      <div class="col-sm-2">
       <label for="distrito">Entidad: </label>
-      <label >Veracruz</label> 
+       <input type="text" value="VERACRUZ" readonly="readonly" style="text-align:center";>
     </div>
     <div class="col-sm-2">
       <label for="distrito">Distrito: </label>
-      <input type="text" name="">
+      <input type="text" name="" value="<?php print $distritoactual?>" readonly="readonly" style="text-align:center";>
     </div>
 
     <div class="col-sm-2">
       <label for="distrito">Módulo: </label>
-      <input type="text" name="">
+      <input type="text" name="" value="<?php print $moduloactual?>" readonly="readonly" style="text-align:center";>
     </div>
     <div class="col-sm-2">
       <label for="distrito">Típo Módulo: </label>
