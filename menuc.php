@@ -28,7 +28,7 @@
                 </ul>
 
 
-         <ul class="nav navbar-nav">
+         <!--<ul class="nav navbar-nav">
           <li> <CENTER><a href="https://www.ine.mx/"> <img src="img/INE.png" style="max-width:70%;width:auto;height:50PX;"> </a></CENTER> </li>
             <li class="dropdown" style="font-size:13px;">
             <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-duplicate"> </span>&nbsp;REPORTES <span class="caret"> </span></a>  
@@ -41,7 +41,7 @@
 </li>
 </ul>
 
-                </ul>
+                </ul>-->
 
 
 
