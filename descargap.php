@@ -37,7 +37,7 @@
         }else{
 
         
-       $sql3="select count(idpadron) as contador from padron where MONTH(fecha) = $mes  AND YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario; ";
+       $sql3="select count(idpadron) as contador from padron where MONTH(fecha) = $mes  and Year(fecha)=$año and encargadoRM_idencargadoRM=$idusuario; ";
                 $query = $con->query($sql3);
                 $r=$query->fetch_array();
                 $contador=$r["contador"];
@@ -49,7 +49,7 @@
        // rename ($destino, "document/acuses/actaentrega/$nuevaruta.pdf");
              
 
-     echo  $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM,dpadron) VALUES('$fecha','$hora','$destino', '$idusuario',0);");
+     $sql =("INSERT INTO padron (fecha, hora, ruta1, encargadoRM_idencargadoRM,dpadron) VALUES('$fecha','$hora','$destino', '$idusuario',0);");
       $query1 = $con -> query($sql);
 
       $sql3="select MAX(idpadron) AS valor  from padron WHERE  encargadoRM_idencargadoRM=$idusuario";
@@ -64,14 +64,11 @@
                  $ruta1=$r["ruta1"];
                rename ($ruta1, "document/acuses/actaentrega/$nuevaruta.pdf"); 
 
-           echo  $sql4="UPDATE  padron SET ruta1 = 'document/acuses/actaentrega/$nuevaruta.pdf' WHERE (idpadron = '$ultimoregistro');";
+            $sql4="UPDATE  padron SET ruta1 = 'document/acuses/actaentrega/$nuevaruta.pdf' WHERE (idpadron = '$ultimoregistro');";
              $query1 = $con -> query($sql4);
 
             echo "<script>alert('Los registros se han guardado con éxito!');window.location='descargarp.php';</script>";
 
-
-
-              
 
 
         }else{
@@ -90,7 +87,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
         <title>DESCARGA DEL PADRÓN ELECTORAL </title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="bootstrap/css/signin.css" rel="stylesheet" type="text/css">
@@ -117,7 +114,46 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
 }
     </style>
     <body onbeforeunload="return myFunction()">
-         <?php include "menue.php"; ?>
+         <?php //include "menue.php"; 
+        setlocale(LC_ALL,"es_MX.UTF-8");
+           $fecha= date('Y-m-d');
+           $hora= date('H:i:s');
+          $mes=date('m');
+          $año=date('Y');
+
+          $sql3="select count(idpadron) as contador from padron where MONTH(fecha) = $mes  and Year(fecha)=$año and encargadoRM_idencargadoRM=$idusuario; ";
+                $query = $con->query($sql3);
+                $r=$query->fetch_array();
+                $contador=$r["contador"];
+
+        if($contador<1){ // No hay registro de este mes
+
+        }
+        else{ // ya subio su acuse, ahora debo ver si ya activo que concluyo descarga cerrar toda la pág, si le falta activar , llevarlo al acuse 
+
+          $sql3="select idpadron from padron where MONTH(fecha) = $mes  and Year(fecha)=$año and encargadoRM_idencargadoRM=$idusuario; ";
+                $query = $con->query($sql3);
+                $r=$query->fetch_array();
+                $idpadron=$r["idpadron"];
+
+          $sql="select dpadron from padron where idpadron=$idpadron;";
+                $query = $con->query($sql);
+                $r=$query->fetch_array();
+                $descargado=$r["dpadron"];
+          if($descargado==1){
+
+             echo "<script>alert('La primera etapa de este mes ha concluido');window.location='principal2.php';</script>";
+
+          }else{
+             echo "<script>alert('Al terminó de la descarga del Padrón, no olvides cambiar el estatus a CONCLUIDO');window.location='descargarp.php';</script>";
+
+          }
+
+
+        }
+
+
+         ?>
 
          <BR>
        
