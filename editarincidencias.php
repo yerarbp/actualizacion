@@ -158,7 +158,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
         <title>Editar datos de Incidencias</title>
 
@@ -177,16 +177,16 @@
             font: italic;}
     </style>
     <body>
-         <?php include "menub.php";
+         <?php 
+         //include "menub.php";
          $idincidencias=$_GET['id'];
         
         
-		  $sql="SELECT * FROM reporteincidencias where idincidencias=$idincidencias";
+	 $sql="SELECT * FROM reporteincidencias where idincidencias=$idincidencias;";
 		  $rs = $con->query($sql);
           if($rs){
             while ($fila = $rs->fetch_object()){
-              $fecha=$fila->fecha;
-
+             $fecha=$fila->fecha;
               $folioinicial=$fila->folioinicial;
               $inhabilitado=$fila->inhabilitado;
               $cao=$fila->cao;
@@ -197,6 +197,7 @@
               $encargadoRM_idencargadoRM=$fila->encargadoRM_idencargadoRM;
               $modulo_idmodulo=$fila->modulo_idmodulo;
               $remesa_idremesa=$fila->remesa_idremesa;
+              $distrito_iddistrito=$fila->distrito_iddistrito; 
               $incidencias_idincidencias=$fila->incidencias_idincidencias;
 
             }
@@ -260,11 +261,10 @@
           
           }
 
-        
-                    echo $sql3 =("select * from remesa where fechainicio BETWEEN "."'".$fechai."'"." and " ."'".$fechaf. "'".";");
+                echo $sql3 =("select * from remesa where fechainicio BETWEEN "."'".$fechai."'"." and " ."'".$fechaf. "'".";");
                     $query = $con -> query($sql3);
                         while ($valores = mysqli_fetch_array($query)) {
-                         echo '<option value="'.$valores[idremesa].'">'.$valores[remesa].'</option>';
+                         echo '<option value="'.$valores[idremesa].'">'.$valores[idremesa].'</option>';
                         }
                     ?>
                    </select>
@@ -276,15 +276,8 @@
 
                     <select name="distrito" class="form-control" rows="5" readonly="readonly"> 
                          <?php
-                        //$sql3="select distrito_iddistrito from remesas.modulo inner join remesas.encargadorm ON remesas.encargadorm.modulo_idmodulo=remesas.modulo.idmodulo"; // encontrar el id que pertenece el distrito
-                        $idusuario=$_SESSION['usuario'][0]['id'];
-
-                      $sql3="select distrito_iddistrito from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-                        $r=$query->fetch_array();
-                        //$id=$r["distrito_iddistrito"];
-                         $id=$r["distrito_iddistrito"];
-                         $sql3 =("select * from remesas.distrito where remesas.distrito.iddistrito=$id");
+                        
+                         $sql3 =("select * from remesas.distrito where remesas.distrito.iddistrito= $distrito_iddistrito");
                         $query = $con -> query($sql3);
                        
                             while ($valores = mysqli_fetch_array($query)) {
@@ -298,14 +291,9 @@
 
                      <select id="modulo" name="modulo" class="form-control" rows="5" readonly="readonly">
                        <?php
-                        $sql3="select modulo_idmodulo from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
+                        
 
-                        $r=$query->fetch_array();
-                        //$id=$r["distrito_iddistrito"];
-                         $id=$r["modulo_idmodulo"];
-
-                       $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$id");
+                       $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$modulo_idmodulo");
                          $query = $con->query($sql4);                
                    
                         while ($valores = mysqli_fetch_array($query)) {
@@ -319,13 +307,9 @@
 
                      <select id="tipomodulo" name="tipomodulo" class="form-control" rows="5" readonly="readonly">
                       <?php
-                         $sql3="select modulo_idmodulo from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
+                       
 
-                        $r=$query->fetch_array();
-                         $idmodulo=$r["modulo_idmodulo"];
-
-                        $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$idmodulo");
+                        $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$modulo_idmodulo");
                          $query = $con->query($sql4);                
                    
                         while ($valores = mysqli_fetch_array($query)) {
@@ -351,60 +335,23 @@
                             <div class="form-row">
                      <div class="form-group col-md-12">
                       <label for="tipomodulo">Situación del Módulo</label>
-                      <select id="inhabilitado" name="inhabilitado" class="form-control" rows="5" onDblclick="smodulo();" onclick="alerta()">
-                      <script type="text/javascript">
-                        function alerta(){
-                          alert("Para editar este campo, dar doble clic");
-
-
-                        }
-                        
-                      </script>
-
-                        <script type="text/javascript">
-                        function smodulo() {
-                            var smodulo=1;
-                          
-                            window.location.href = window.location.href + "&s=" + smodulo; 
-                        }
-                        </script>
-                        <?php
-
-                      $smodulo=$_GET['s'];
-                      if ($smodulo==1){
-                        //SI TIENE 1, ES QUE LO ACTIVO EN EL METD DE JVSCR Y ES QUE EL USUARIO QUIERE VER TODOS
-                        //ABRO Y CIERRO EQUITA DE PHP PORQUE LO QUE DEBE MOSTRAR ES HTML Y ES EN IF 
-
-                      ?>
-
-                      <option value="0">Seleccione:</option>
-                      <option value="1">Módulo NO Inhabilitado </option> 
-                      <option value="2">Módulo  Inhabilitado </option>
-
+                      <select id="inhabilitado" name="inhabilitado" class="form-control" rows="5">
                       <?php
-                      } else{
-                        // LE VA CARGAR SOLO EL COMBO QUE TIENE POR DEFECTO LLENADO, PARA QUE NO EDITE 
+                      if( $inhabilitado=1){
 
-                          $sql3=" select inhabilitado from remesas.reporteincidencias where idincidencias=$idincidencias";
-                        $query = $con->query($sql3);
-                        $r=$query->fetch_array();
-                        $id=$r["inhabilitado"];
+                        echo "<option value='1'> Modulo NO Inhabilitado </option>  ";
+                        echo "<option value='2'> Modulo habilitado </option>  ";
 
-                        if ($id==1){
-                        ?>
-                           <option value="1">Módulo NO Inhabilitado </option> 
+                      }else{
+                        echo "<option value='2'> Modulo habilitado </option>  ";
+                        echo "<option value='1'> Modulo NO Inhabilitado </option>  ";
 
-                         <?php
-                          }
-                        else{
-                          ?>
-
-                          <option value="2">Módulo  Inhabilitado </option>
-
-                         <?php }
                       }
 
                       ?>
+                      
+
+              
                     </select>
 
                     </div>
@@ -415,46 +362,33 @@
                     <div class="form-group col-md-12">
                     <label for="tipomodulo">Tipo de Incidencia:</label >
 
-                     <select id="tipoincidencia" name="tipoincidencia" class="form-control" rows="5"    onDblclick="activarb();" onclick="alerta();">
+                     <select id="tipoincidencia" name="tipoincidencia" class="form-control" rows="5" >
                       <?php
 
-                      $bandera1=$_GET['bandera'];
-
-                      if($bandera1==1){
-
-
-                       $sql3="SELECT idincidencias,incidencias FROM remesas.incidencias"; // encontrar el tipo de modulo
-                        $query = $con -> query($sql3);
-                   
-                        while ($valores = mysqli_fetch_array($query)) {
-                         echo '<option value="'.$valores[idincidencias].'">'. utf8_encode ($valores[incidencias]).'</option>';
-
-                            }
-                    
-                       
-                        }else{
-                          $sql3="SELECT idincidencias,incidencias FROM remesas.incidencias where idincidencias=$incidencias_idincidencias"; 
+                      $sql3="SELECT idincidencias,incidencias FROM incidencias where idincidencias=$incidencias_idincidencias"; 
 
                         $query = $con -> query($sql3);
                    
                         while ($valores = mysqli_fetch_array($query)) {
-                         echo '<option value="'.$valores[idincidencias].'">'.$valores[incidencias].'</option>';
+                         echo '<option value="'.$valores[idincidencias].'">'.utf8_encode($valores[incidencias]).'</option>';
 
-                            }
-                        }
+                           }
+
+                      $sql3="SELECT idincidencias,incidencias FROM incidencias where idincidencias!=$incidencias_idincidencias"; 
+
+                        $query = $con -> query($sql3);
+                   
+                        while ($valores = mysqli_fetch_array($query)) {
+                         echo '<option value="'.$valores[idincidencias].'">'.utf8_encode($valores[incidencias]).'</option>';
+
+                           }
+                      
+
                         ?>
 
                       
                         </select>
 
-
-                        <script type="text/javascript">
-                        function activarb() {
-                            var bandera=1;
-                          
-                            window.location.href = window.location.href + "&bandera=" + bandera; 
-                        }
-                        </script>
 
                            
                     </div>
