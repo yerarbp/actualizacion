@@ -23,7 +23,7 @@ include "conexion.php";
 <html>
 <head>
   <title>Lista de Incidencias </title>
-  <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+  <link rel="icon"   type ="image/PNG" href="img/INE2.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -156,7 +156,8 @@ $bandera=false;?>
               $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado"); 
               $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                $dial = $dias[date('N', strtotime($fec))];
-               list( $ano, $mes, $dia ) = split( '[/.-]', $fec);
+              // list( $ano, $mes, $dia ) = split( '[/.-]', $fec);
+               list($ano, $mes, $dia ) = preg_split('[-]', $fec);  
 
               echo "<td>". $dial.",". ($dia)." de ".$meses[$mes-1]. " del ".$ano . "</td>";
 
