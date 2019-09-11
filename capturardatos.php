@@ -154,10 +154,18 @@ if($_POST['guardar']){
                   $r=$query->fetch_array();
                   $periodo=$r["idperiodo"];
 
+                 echo $sql3="SELECT idreported  FROM reported where fecha='$fecha' and encargadoRM_idencargadoRM=$idusuario;";
+                  $query = $con->query($sql3);
+                  $r=$query->fetch_array();
+                  $idrecuperado=$r["idreported"];
 
 
+                  if($idrecuperado>1){
+                    echo "<script>alert('Ya se ha ingreso reporte para este día, intente con otra fecha');</script>";
 
-                if ($laborable==2){
+                  }  else{
+
+                      if ($laborable==2){
                      $sql3 =("INSERT INTO reporteincidencias (fecha, inhabilitado, cao, descripcion, solucion,como, tiempo,justifique,idllenado, encargadoRM_idencargadoRM, modulo_idmodulo, remesa_idremesa,incidencias_idincidencias,distrito_iddistrito,validado,periodo_idperiodo) 
 
 
@@ -222,7 +230,7 @@ if($_POST['guardar']){
                         echo "<script>alert('Se registro el reporte SIIRFE y el de incidencias exitosamente !');window.location='capturarincidencias.php';</script>";
 
                          }
-
+                       }
 
                     }
 
@@ -243,7 +251,7 @@ if($_POST['guardar']){
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
         <title>Registro SIIRTE</title>
 
