@@ -26,7 +26,7 @@ include "conexion.php";
 <html>
 <head>
   <title>Reportes SIIRFE diarios </title>
-  <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+  <link rel="icon"   type ="image/PNG" href="img/INE2.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -151,24 +151,23 @@ $bandera=false;?>
           
           }
 
-            $sql= "select * from reported ". $criterio. "where fecha BETWEEN "."'".$fechai."'"." and " ."'".$fechaf. "'"." and encargadoRM_idencargadoRM=$idusuario"." ORDER BY fecha desc".";";
+         $sql= "select * from reported ". $criterio. "where fecha between "."'".$fechai."'"." and " ."'".$fechaf. "'"." and encargadoRM_idencargadoRM=$idusuario"." ORDER BY fecha desc".";";
 
-
-          //$sql= "select * from reported ". $criterio. "ORDER BY fecha desc";
           $rs = $con->query($sql);
           if($rs){
              while ($fila = $rs->fetch_object()){
               $fec=$fila->fecha;
-              $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado"); 
-              $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+               $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado"); 
+             $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                $dial = $dias[date('N', strtotime($fec))];
-               list( $ano, $mes, $dia ) = split( '[/.-]', $fec);
+              // list( $ano, $mes, $dia ) = split( '[/.-]', $fec);  
+               list($ano, $mes, $dia ) = preg_split('[-]', $fec);  
 
               echo "<td>". $dial.",". ($dia)." de ".$meses[$mes-1]. " del ".$ano . "</td>";
               //echo "ID REPORTE   :";
            $id=$fila->idreported;
           $idremesa=$fila->remesa_idremesa;
-              $sql3="select idremesa from remesas.remesa inner join remesas.reported on remesas.reported.idreported=".$id."". " and idremesa=".$idremesa.";";
+         $sql3="select idremesa from remesas.remesa inner join remesas.reported on remesas.reported.idreported=".$id."". " and idremesa=".$idremesa.";";
          
               $query = $con->query($sql3);
               $r=$query->fetch_array();
