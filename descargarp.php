@@ -6,11 +6,13 @@ include "conexion.php";
     $nivelp=$_SESSION['nivelp'][0]['nivelp'];
      setlocale(LC_ALL,"es_MX.UTF-8");
            $fecha= date('Y-m-d');
+           $año=date('Y');
+           $mes=date('m');
 
          
 
 
-   $sql="select count(*) as cont from padron where month(now()) and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario;";
+    $sql="select count(*) as cont from padron where MONTH(fecha) = $mes  and Year(fecha)=$año and encargadoRM_idencargadoRM=$idusuario;";
        $query = $con->query($sql);
         $r=$query->fetch_array();
         $encontrado=$r["cont"];
@@ -24,29 +26,25 @@ include "conexion.php";
       	} 
 
 		else{
-		    print "<script>alert('Acceso restringido y/o ha registrado los acuses'); window.location='index.php';</script>";
+		    print "<script>alert('Acceso restringido y/o no ha registrado el Acta de Descarga de Padrón Electoral  ); window.location='index.php';</script>";
 	
 		}
 
 
  if($_POST['guardar']){ 
 
-      $dpadron=$_POST['dpadron']; 
+      $dpadron=$_POST['estatus']; 
        $mes=date('m');
 
 
-       $sql="select idpadron from padron where  MONTH(fecha) = $mes and YEAR(NOW()) and encargadoRM_idencargadoRM=$idusuario";
+       $sql="select idpadron from padron where  MONTH(fecha) = $mes and Year(fecha)=$año  and encargadoRM_idencargadoRM=$idusuario";
        $query = $con->query($sql);
         $r=$query->fetch_array();
         $idpadron=$r["idpadron"];
 
 
-      $sql="UPDATE padron  SET dpadron = '1' WHERE (idpadron = '$idpadron')";
+      $sql="UPDATE padron  SET dpadron = $dpadron WHERE (idpadron = '$idpadron')";
        $query1 = $con -> query($sql);
-
-
-
-
 
 
        print "<script>alert('La primera etapa ha concluido correctamente'); window.location='principal2.php';</script>";
@@ -66,7 +64,7 @@ include "conexion.php";
 <html>
 <head>
   <title> DESCARGAR PADRÓN ELECTORAL  </title>
-  <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+  <link rel="icon"   type ="image/PNG" href="img/INE2.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.css">
@@ -108,28 +106,34 @@ text-shadow: -1px 0 #dee1e8, 0 1px #dee1e8, 1px 0 #dee1e8, 0 -1px #dee1e8, -2px 
 <?php include "menue.php";
 $bandera=false;?> 
 <div class="container">
-  <h3 align="center" class="let"> </h3><br><br>
+  <h3 align="center" class="let"> </h3>
     <!-- BUSCADOR-->
  
       
           <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
          <div class="form-group" style="width: 100%;">
-
-                  <label>*</label> <label for="nombre" class="titulog">DESCARGUE EL PADRÓN ELECTORAL</label>
+              
+                <CENTER> <label for="nombre" class="titulog">DESCARGUE EL PADRÓN ELECTORAL</label> </CENTER>
                   <BR><BR>
-                  <a   href="document/padron/VERACRUZ-1-1-6089588-1914822413.txt.gz.srn" download >
-                  <CENTER><img  src="img/despadron.png" alt="descargar" width="400" height="400" ></CENTER>
+                  <a   href="document/padron/VERACRUZ-1-1-6095238-4067889126.txt.gz.srn" download >
+                  <CENTER><img  src="img/despadron.png" alt="descargar" width="300" height="300" ></CENTER>
                   </a>
 
-                  <br>
-
-                  <label for="entidad">Estatus de la descarga del Padrón </label>
-               <select name="dpadron"  id="dpadron" class="form-control" rows="5" readonly="readonly" > 
-                <option value="0"> NO CONCLUIDO  </option>
-                <option value="2"> CONCLUIDO  </option>
-               </select>
-           
+                  <br> <br><br>
+                  <CENTER><div id="blink">! ESTATUS DE LA DESCARGA DEL PADRÓN ELECTORAL !</div> </CENTER>
+                  
+        <fieldset>
+        <div style=" border-style: solid;
+  border-color: red; margin:9px; padding:4px;">
+        <center><legend>SELECCIONE UNA OPCIÓN</legend></center>
+        <H4><input type="radio" name="estatus" value="0" checked>   <B> NO CONCLUIDO:</B>   ES EL VALOR INICIAL, E INDICA QUE EL ARCHIVO SE ENCUENTRA EN PROCESO DE DESCARGA <br></H4>
+        <H4><input type="radio" name="estatus" value="1">   <B> CONCLUIDO:  </B>  CUANDO EL ARCHIVO HAYA TERMINADO DE DESCARGAR Y COINCIDA EL TAMAÑO EN KB CON EL ACTA DE DESCARGA (posteriormente, dar clic en guardar) <br></H4>
+        <br>
+        
+    </fieldset>
+    </div>              
+              
 
               
                    
@@ -164,6 +168,17 @@ $bandera=false;?>
   
   <?php include "piepagina.php"; ?>
  </footer> 
+ <script type="text/javascript">
+  window.setInterval (BlinkIt, 2000);
+  var color = "red";
+
+  function BlinkIt () {
+    var blink = document.getElementById ("blink");
+    color = (color == "#ffffff")? "red" : "#ffffff";
+    blink.style.color = color;
+    blink.style.fontSize='20px';
+  }
+</script>
   
   
   
