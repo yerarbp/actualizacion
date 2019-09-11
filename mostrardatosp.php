@@ -16,7 +16,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
         <title>Mostrar datos del reporte SIIRFE</title>
 
@@ -36,12 +36,35 @@
     </style>
     <body>
          <?php include "menub.php";
+         $sql3="SELECT MAX(idreported) AS idreported FROM reported where encargadoRM_idencargadoRM=$idusuario;";
+                     
+                            $query = $con->query($sql3);
+                            $r=$query->fetch_array();
+                             $ultimoidreporte=$r["idreported"];
+                            if($ultimoidreporte==null){
+                              $ultimoidreporte=0;
+
+                            }
+                            ///////////////////////////////////////////
+                        $sql3="SELECT * FROM reported where encargadoRM_idencargadoRM=$idusuario and idreported=$ultimoidreporte;";
+                            $query = $con->query($sql3);
+                            $r=$query->fetch_array();
+                           $periodoAntes=$r["periodo_idperiodo"];
+    
+
+                         $sql3="SELECT MAX(idperiodo) AS idperiodo FROM periodo;";
+                              $query = $con->query($sql3);
+                              $r=$query->fetch_array();
+                             $periodoActual=$r["idperiodo"];
+
          $idreported=$_GET['id'];
-         if ($idreported==1){
+         if( ($idreported==1) || ($periodoAntes!= $periodoActual)){
         
-		    
+		  
           
       }else{
+
+
        $idreported=$_GET['id'];
        ////////////////////////////////////////////////////
        $sql="select * from reported where idreported=$idreported;";
@@ -71,6 +94,7 @@
           $query = $con->query($sql);
           $r=$query->fetch_array();
           $total=$r["total"];// SABER EL TOTAL DE REGISTROS QUE TIENE ASIGNADO ESE USUARIO
+
           $sql="SELECT * FROM reported where encargadoRM_idencargadoRM=$idusuario";
           $rs = $con->query($sql);
           if($rs){
@@ -87,7 +111,6 @@
   }
    $valorinicialv=$datos[1];
    $indice=$total-1;
-  
 
 
 
@@ -128,7 +151,7 @@
            
             $datos[$i] = $id;
                 ///echo "<BR>";
-          //echo "los indices tomados : ".$datos[$i];
+         // echo "los indices tomados : ".$datos[$i];
           $i++;
             }
             foreach ($datos as $dato);
@@ -140,7 +163,7 @@
                   $encontrado=true;
                   
                     }
-           
+  //PARA SABER SI HAY UN REGISTRO DE ENERO, YA QUE SINO, DEBE VOLVER A GENERAR EL FOLIO COMO DEBEN SER A REINICIAR EN 000 CON UNA CLAVE POR DISTRITO Y MODULO 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -150,7 +173,7 @@ if($encontrado==false){
                             $query = $con->query($sql3);
                             $r=$query->fetch_array();
                             
-                            $ultimofolio=$r["foliofinal"];
+                           $ultimofolio=$r["foliofinal"];
                          $foliocortado = substr("$ultimofolio", -5);
 
               if($foliocortado==0){
@@ -324,9 +347,8 @@ if($encontrado==false){
                     <select name="distrito" class="form-control" rows="5" readonly="readonly"> 
                          <?php
                         //$sql3="select distrito_iddistrito from remesas.modulo inner join remesas.encargadorm ON remesas.encargadorm.modulo_idmodulo=remesas.modulo.idmodulo"; // encontrar el id que pertenece el distrito
-                        $idusuario=$_SESSION['usuario'][0]['id'];
-
-                          $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
+                      $idusuario=$_SESSION['usuario'][0]['id'];
+                       $sql3="select distrito_iddistrito from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
                         $query = $con->query($sql3);
                         $r=$query->fetch_array();
                         $id=$r["distrito_iddistrito"];
@@ -393,7 +415,8 @@ if($encontrado==false){
                     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                   $dial = $dias[date('N', strtotime($fecha))];
                   $dial;
-                  list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
+                  //list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
+                  list($ano, $mes, $dia ) = preg_split('[-]', $fecha);  
 
                     ?>
 
