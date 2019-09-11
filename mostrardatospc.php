@@ -16,7 +16,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
         <title>Mostrar datos del reporte SIIRFE</title>
 
@@ -364,9 +364,8 @@ $valor=$datos[$posicion];
                     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                   $dial = $dias[date('N', strtotime($fecha))];
                   $dial;
-                  list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
-
-
+                  //list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
+                  list($ano, $mes, $dia ) = preg_split('[-]', $fecha);  
 
 
                     ?>
