@@ -16,7 +16,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
         <title>Mostrar datos de Incidencias</title>
 
@@ -57,6 +57,7 @@
               $modulo_idmodulo=$fila->modulo_idmodulo;
               $remesa_idremesa=$fila->remesa_idremesa;
               $incidencias_idincidencias=$fila->incidencias_idincidencias;
+              $distrito_iddistrito=$fila->distrito_iddistrito;
 
             }
         }
@@ -94,13 +95,7 @@
                          <?php
                         //$sql3="select distrito_iddistrito from remesas.modulo inner join remesas.encargadorm ON remesas.encargadorm.modulo_idmodulo=remesas.modulo.idmodulo"; // encontrar el id que pertenece el distrito
                         
-
-                     echo $sql3="select distrito_iddistrito from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-                        $r=$query->fetch_array();
-                        //$id=$r["distrito_iddistrito"];
-                        $id=$r["distrito_iddistrito"];
-                         $sql3 =("select * from remesas.distrito where remesas.distrito.iddistrito=$id");
+                         $sql3 =("select * from remesas.distrito where remesas.distrito.iddistrito=$distrito_iddistrito");
                         $query = $con -> query($sql3);
                        
                             while ($valores = mysqli_fetch_array($query)) {
@@ -114,14 +109,8 @@
 
                      <select id="modulo" name="modulo" class="form-control" rows="5" readonly="readonly">
                        <?php
-                        $sql3="select modulo_idmodulo from encargadoRM where idencargadoRM=$encargadoRM_idencargadoRM;";
-                        $query = $con->query($sql3);
-
-                        $r=$query->fetch_array();
-                        //$id=$r["distrito_iddistrito"];
-                        $id=$r["modulo_idmodulo"];
-
-                       $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$id");
+                       
+                 $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$modulo_idmodulo");
                          $query = $con->query($sql4);                
                    
                         while ($valores = mysqli_fetch_array($query)) {
@@ -136,13 +125,9 @@
 
                      <select id="tipomodulo" name="tipomodulo" class="form-control" rows="5" readonly="readonly">
                       <?php
-                        $sql3="select modulo_idmodulo from encargadoRM where idencargadoRM=$encargadoRM_idencargadoRM;";
-                        $query = $con->query($sql3);
+                        
 
-                        $r=$query->fetch_array();
-                       $idmodulo=$r["modulo_idmodulo"];
-
-                        $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$idmodulo");
+                       $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$modulo_idmodulo");
                          $query = $con->query($sql4);                
                    
                         while ($valores = mysqli_fetch_array($query)) {
@@ -157,7 +142,8 @@
                     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                   $dial = $dias[date('N', strtotime($fecha))];
                   $dial;
-                  list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
+                  //list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
+                  list($ano, $mes, $dia ) = preg_split('[-]', $fecha);  
 
 
 
