@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+    <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
     <title>Inicio al sistema</title>
 
@@ -24,14 +24,14 @@
 <body style="background:#FFFFFF;">
 
   <div class="container" align="center">
-	<div class="logo" align="center"><img src="img/INE.JPG" width="200" height="200"></div>
+	<div class="logo" align="center"><img src="img/INE.jpg" width="200" height="200"></div>
     <h2 class="form-signin-heading">Actualización del Padrón Electoral de Atención Ciudadana</h2>
     <h2 class="form-signin-heading"></h2>
       <form class="form-signin role="form" name="login" action="login.php" method="post"">
       
         <h4 class="form-signin-heading">Ingrese al sistema </h4>
-        <label for="inputEmail" class="sr-only">Ingresa usuario</label>
-        <input type="text" id="Ingresausuario" name="nombre" class="form-control" placeholder="Ingresa usuario" required autofocus style="text-align:center";>
+        <label for="inputEmail" class="sr-only">Usuario</label>
+        <input type="text" id="Ingresausuario" name="nombre" class="form-control" placeholder="Usuario" required autofocus style="text-align:center";>
         <br>
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input type="password" id="inputPassword" class="form-control"  name="contra" placeholder="Password" required style="text-align:center";>
