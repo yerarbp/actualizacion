@@ -1,13 +1,13 @@
 <?php session_start(); 
-	include ("conexion.php");
-	$idusuario=$_SESSION['usuario'][0]['id'];
+  include ("conexion.php");
+  $idusuario=$_SESSION['usuario'][0]['id'];
     
-		if($idusuario!=''){
-		} 
-		else{ 
-		print "<script>alert('Acceso restringido, no ha iniciado sesión'); window.location='index.php';</script>";
-		}      
-	?>
+    if($idusuario!=''){
+    } 
+    else{ 
+    print "<script>alert('Acceso restringido, no ha iniciado sesión'); window.location='index.php';</script>";
+    }      
+  ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -17,7 +17,7 @@
         <meta http-equiv="conten-type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon"   type ="image/PNG" href="img/INE2.PNG">
+        <link rel="icon"   type ="image/PNG" href="img/INE2.png">
 
         <title>Mostrar datos de Incidencias</title>
 
@@ -40,12 +40,11 @@
          $idincidencias=$_GET['id'];
         
         
-		  $sql="SELECT * FROM reporteincidencias where idincidencias=$idincidencias";
-		  $rs = $con->query($sql);
+      $sql="SELECT * FROM reporteincidencias where idincidencias=$idincidencias";
+      $rs = $con->query($sql);
           if($rs){
             while ($fila = $rs->fetch_object()){
               $fecha=$fila->fecha;
-
               $folioinicial=$fila->folioinicial;
               $inhabilitado=$fila->inhabilitado;
               $cao=$fila->cao;
@@ -58,12 +57,9 @@
               $modulo_idmodulo=$fila->modulo_idmodulo;
               $remesa_idremesa=$fila->remesa_idremesa;
               $incidencias_idincidencias=$fila->incidencias_idincidencias;
-
+              $distrito_iddistrito=$fila->distrito_iddistrito;
             }
         }
-
-
-
          ?>
 
          <br>
@@ -94,19 +90,12 @@
                     <select name="distrito" class="form-control" rows="5" readonly="readonly"> 
                          <?php
                         //$sql3="select distrito_iddistrito from remesas.modulo inner join remesas.encargadorm ON remesas.encargadorm.modulo_idmodulo=remesas.modulo.idmodulo"; // encontrar el id que pertenece el distrito
-                        $idusuario=$_SESSION['usuario'][0]['id'];
-
-                     $sql3="select distrito_iddistrito from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-                        $r=$query->fetch_array();
-                        //$id=$r["distrito_iddistrito"];
-                        $id=$r["distrito_iddistrito"];
-                         $sql3 =("select * from remesas.distrito where remesas.distrito.iddistrito=$id");
+                        
+                      $sql3 =("select * from remesas.distrito where remesas.distrito.iddistrito=$distrito_iddistrito");
                         $query = $con -> query($sql3);
                        
                             while ($valores = mysqli_fetch_array($query)) {
                              echo '<option value="'.$valores[iddistrito].'">'.$valores[nombredistrito].'</option>';
-
                             }
                         ?>
                     </select>
@@ -115,19 +104,12 @@
 
                      <select id="modulo" name="modulo" class="form-control" rows="5" readonly="readonly">
                        <?php
-                        $sql3="select modulo_idmodulo from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-
-                        $r=$query->fetch_array();
-                        //$id=$r["distrito_iddistrito"];
-                        $id=$r["modulo_idmodulo"];
-
-                       $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$id");
+                      
+                       $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$modulo_idmodulo");
                          $query = $con->query($sql4);                
                    
                         while ($valores = mysqli_fetch_array($query)) {
                          echo '<option value="'.$valores[idmodulo].'">'.$valores[idmodulo].'</option>';
-
                             }
                         ?>
                         
@@ -137,18 +119,12 @@
 
                      <select id="tipomodulo" name="tipomodulo" class="form-control" rows="5" readonly="readonly">
                       <?php
-                        $sql3="select modulo_idmodulo from encargadoRM where idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-
-                        $r=$query->fetch_array();
-                       $idmodulo=$r["modulo_idmodulo"];
-
-                        $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$idmodulo");
+                        
+                        $sql4 =("select * from remesas.modulo where remesas.modulo.idmodulo=$modulo_idmodulo");
                          $query = $con->query($sql4);                
                    
                         while ($valores = mysqli_fetch_array($query)) {
                          echo '<option value="'.$valores[idmodulo].'">'.$valores[tipomodulo].'</option>';
-
                             }
                         ?>
                         </select>
@@ -158,11 +134,8 @@
                     $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
                   $dial = $dias[date('N', strtotime($fecha))];
                   $dial;
-                  list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
-
-
-
-
+                 // list( $ano, $mes, $dia ) = split( '[/.-]', $fecha);
+                  list($ano, $mes, $dia ) = preg_split('[-]', $fecha);  
                     ?>
 
                      <input type="text" class="form-control" name="fecha" id="fecha" step="1" min="2000-01-01"  max="20000-01-01" value="<?php echo $dial.",". ($dia)." de ".$meses[$mes-1]. " del ".$ano ;?>" style="text-align:center;" readonly="readonly">
@@ -188,7 +161,6 @@
                         $query = $con->query($sql3);
                         $r=$query->fetch_array();
                         echo $id=$r["inhabilitado"];
-
                         if ($id==1){
                         ?>
                            <option value="1">Módulo NO Inhabilitado </option> 
@@ -217,14 +189,11 @@
                      <select id="tipoincidencia" name="tipoincidencia" class="form-control" rows="5" readonly="readonly" onclick ="activarb();" onkeyup="activarb();">
                       <?php
                        $sql3="SELECT idincidencias,incidencias FROM remesas.incidencias where idincidencias=$incidencias_idincidencias"; 
-
                         $query = $con -> query($sql3);
                    
                         while ($valores = mysqli_fetch_array($query)) {
                          echo '<option value="'.$valores[idincidencias].'">'. utf8_encode ($valores[incidencias]).'</option>';
-
                      
-
                             }
                         ?>
                         </select>
@@ -245,7 +214,6 @@
 
                               <?php
                         $sql3="select * from remesas.reporteincidencias where idincidencias=$idincidencias";
-
                         $query = $con->query($sql3);
                         $r=$query->fetch_array();
                       
@@ -316,5 +284,3 @@
 
     </body>
 </html>
-
-
