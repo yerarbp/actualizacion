@@ -7,7 +7,7 @@ if(!empty($_POST)){
 			include "conexion.php";
 			$acentos = $con->query("SET NAMES 'utf8'");
 			$user_id=null;
-			$sql= ("select * from encargadoRM where usuario='$_POST[nombre]' and contrasena='$_POST[contra]'");
+			$sql= ("select * from encargadorm where usuario='$_POST[nombre]' and contrasena='$_POST[contra]'");
 		
 			
 			$query = $con->query($sql);
