@@ -280,9 +280,10 @@ if($encontrado==false){
                 $reincorporacion=$fila->reincorporacion;
                 $reemplazo=$fila->reemplazo;
                 $total=$fila->total;
-                $cancelados=$fila->cancelados;
-                $rechazados=$fila->rechazados;
-                $curp=$fila->curp;
+                echo "Esto tiene los cancelados";
+                echo $cancelados=$fila->cancelados;
+                echo "rechados"; echo $rechazados=$fila->rechazados;
+                echo "CURP"; ECHO $curp=$fila->curp;
                 $solicitudexpedicion=$fila->solicitudexpedicion;
                 $solicitudrectificacion=$fila->solicitudrectificacion;
                 $demandajucion=$fila->demandajucion;
@@ -428,7 +429,7 @@ if($encontrado==false){
                     <hr style="border-color: black" />
 
                     <ul class="nav nav-tabs">
-                         <li class="active"><a data-toggle="tab" href="#home"> FOLIOS </a></li>
+                    <li class="active"><a data-toggle="tab" href="#home"> FOLIOS </a></li>
                     <li><a data-toggle="tab" href="#menu1"> TRAMITES </a></li>
                     <li><a data-toggle="tab" href="#menu2"> CREDENCIALES </a></li>
                     <li><a data-toggle="tab" href="#menu3"> OTROS </a></li>
@@ -538,38 +539,49 @@ if($encontrado==false){
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="correc" class="form-control">  Cancelados:</label>
-                            <input type="number" id="cancelados" name="cancelados" value="0" min="0" max="5550" step="1" value="0" min="0" max="5550" step="1" readonly="readonly" value="<?php print $cancelados?>" style="text-align:center;"> 
+                            <label for="correc" class="form-control">  Cancelados:</label> 
+                             <input type="number" id="cancelados" name="cancelados"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  readonly="readonly" value="<?php print $cancelados?>" style="text-align:center;">
+
                             </div>
+
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inscr" class="form-control"> Rechazados:  </label>
-                            <input type="number"  id="rechazados" name="rechazados" value="0" min="0" max="5550" step="1" value="0" min="0" max="5550" step="1" readonly="readonly" value="<?php print $rechazados?>" style="text-align:center;"> 
+                        
+
+                            <input type="number" id="rechazados" name="rechazados"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  readonly="readonly" value="<?php print $rechazados?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="correc" class="form-control">  CURP:</label>
-                            <input type="number" id="curp" name="curp" value="0" min="0" max="5550" step="1" readonly="readonly" value="<?php print $curp?>" style="text-align:center;"> 
+                            <input type="number"  id="curp" name="curp"min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  readonly="readonly" value="<?php print $curp?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inscr" class="form-control">  Solicitud de Expedientes:  </label>
-                            <input type="number" id="solicitudexpedientes" name="solicitudexpedientes" value="0" min="0" max="5550" step="1" readonly="readonly" value="<?php print $solicitudexpedicion?>" style="text-align:center;"> 
+                            
+
+                            <input type="number"  id="solicitudexpedientes" name="solicitudexpedientes" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  readonly="readonly" value="<?php print $solicitudexpedicion?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="correc" class="form-control">  Solicitud de Rectificación:</label>
-                            <input type="number" id="solicitudrectificacion" name="solicitudrectificacion" value="0" min="0" max="5550" step="1" readonly="readonly" value="<?php print $solicitudrectificacion?>" style="text-align:center;"> 
+                           
+
+                             <input type="number"  id="solicitudrectificacion" name="solicitudrectificacion"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  readonly="readonly" value="<?php print $solicitudrectificacion?>" style="text-align:center;">
+
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inscr" class="form-control"> Demanda de jución:  </label>
-                            <input type="number" id="demanda" name="demanda" value="0" min="0" max="5550" step="1" readonly="readonly" value="<?php print $demandajucion?>" style="text-align:center;"> 
+                           
+
+                              <input type="number"  id="demanda" name="demanda"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  readonly="readonly" value="<?php print  $demandajucion?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
@@ -1017,4 +1029,39 @@ if($encontrado==false){
     </body>
 </html>
 
+<script language="JavaScript" type="text/javascript">
+
+                            var a = document.getElementById("inscripciones").value;
+                            var b = document.getElementById("correcciones").value;
+                            var c = document.getElementById("cambiod").value;
+                            var d = document.getElementById("reposicion").value;
+                            var e = document.getElementById("corecciondatosd").value;
+                            var f = document.getElementById("reincorporacion").value;
+                            var g = document.getElementById("reemplazo").value;
+                            var h = document.getElementById("cancelados").value;
+                             var i = document.getElementById("solicitudexpedientes").value;
+                             var j = document.getElementById("solicitudrectificacion").value;
+                             var k = document.getElementById("demanda").value;
+
+                            var sumatramites=0;
+                           
+                        //document.getElementById("ttramites").value =a;
+                            //document.getElementById("ttramites").value =sumatramites;
+                          var foliocup=document.getElementById("futilizado").value;
+                          alert (foliocup);
+                          var folionocup=document.getElementById("fnutilizado").value; 
+          var sumatramites = parseInt(a)+ parseInt(b)+ parseInt(c)+ parseInt(d)+ parseInt(e)+ parseInt(f)+ parseInt(g)+ parseInt(h)+ parseInt(i)+ parseInt(j)+ parseInt(k)+parseInt(y);
+                         
+          if(foliocup==sumatramites){
+            alert("Las cantidades de folios y trámites se encuentran correctas");
+          }else{
+
+            alert("Hay una diferencias en las cantidades de folios y trámites");
+            alert(folionocup);
+             alert(sumatramites);
+
+          }
+
+</script>
+             
 
