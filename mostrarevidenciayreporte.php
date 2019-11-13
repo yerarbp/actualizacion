@@ -47,7 +47,7 @@
             font: italic;}
     </style>
     <body>
-         <?php include "menuc.php";
+         <?php //include "menuc.php";
         
      $idreported=$_GET['id'];
 
@@ -974,4 +974,28 @@ $valor=$datos[$posicion];
     </body>
 </html>
 
+<script language="JavaScript" type="text/javascript">
 
+    var a = document.getElementById("inscripciones").value;
+                            var b = document.getElementById("correcciones").value;
+                            var c = document.getElementById("cambiod").value;
+                            var d = document.getElementById("reposicion").value;
+                            var e = document.getElementById("corecciondatosd").value;
+                            var f = document.getElementById("reincorporacion").value;
+                            var g = document.getElementById("reemplazo").value;
+                            var sumatramites=0;
+                           
+                        //document.getElementById("ttramites").value =a;
+                            //document.getElementById("ttramites").value =sumatramites;
+                          var foliocup=document.getElementById("futilizado").value;
+                          var folionocup=document.getElementById("fnutilizado").value; 
+          sumatramites = parseInt(a)+ parseInt(b)+ parseInt(c)+ parseInt(d)+ parseInt(e)+ parseInt(f)+ parseInt(g)+ parseInt(folionocup);
+          if(foliocup==sumatramites){
+            alert("Las cantidades de folios y trámites se encuentran correctas");
+          }else{
+
+            alert("Hay una diferencias en las cantidades de folios y trámites");
+          }
+
+</script>
+             
