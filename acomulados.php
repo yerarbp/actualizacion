@@ -92,7 +92,7 @@
   $añopasado=$añoactual-1;
   $mes=date('m');
 
-   $sql2="select min(folioinicial) as folinioinicial , max(foliofinal) as foliofinal, sum(totalfinal) as total from reported where Year(fecha)=$añopasado and encargadoRM_idencargadoRM=36;";
+   $sql2="select min(folioinicial) as folinioinicial , max(foliofinal) as foliofinal, sum(totalfinal) as total from reported where Year(fecha)=$añopasado and encargadoRM_idencargadoRM=$idusuario;";
 
                   $query = $con->query($sql2);
                   $r=$query->fetch_array();
@@ -100,7 +100,7 @@
                   $ffinalp=$r["foliofinal"];
                   $totalfp=$r["total"];
 
-   $sql3="select min(folioinicial) as folinioinicial , max(foliofinal) as foliofinal, sum(totalfinal) as total from reported where Year(fecha)=$añoactual and encargadoRM_idencargadoRM=36;";
+   $sql3="select min(folioinicial) as folinioinicial , max(foliofinal) as foliofinal, sum(totalfinal) as total from reported where Year(fecha)=$añoactual and encargadoRM_idencargadoRM=$idusuario;";
 
                   $query = $con->query($sql3);
                   $r=$query->fetch_array();
