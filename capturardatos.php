@@ -12,7 +12,7 @@
 if($_POST['guardar']){
     $ffinal=$_POST['ffinal'];
     $ttramites=$_POST['ttramites'];
-     if(($_POST['remesa']>=1)&& ($_POST['ttramites']!= '')&& ($_POST['tcredenciales']!= '')){    
+     if(($_POST['remesa']>=1)&& ($_POST['ttramites']!= '')&& ($_POST['tcredenciales']!= '')){
                 
                $fecha=$_POST['fecha'];
                 echo "<bR>"; ECHO "EL folio incial es ";       
@@ -149,15 +149,21 @@ if($_POST['guardar']){
                 echo $registrar=$_POST['registrar'];
                  echo $iddistrito=$_POST['distrito'];
 
+
+  
+
+
                   $sql3="SELECT MAX(idperiodo) AS idperiodo FROM periodo;";
                   $query = $con->query($sql3);
                   $r=$query->fetch_array();
                   $periodo=$r["idperiodo"];
 
-                 echo $sql3="SELECT idreported  FROM reported where fecha='$fecha' and encargadoRM_idencargadoRM=$idusuario;";
+///saber si ya esta esa fecha registrada 
+                 echo $sql3="SELECT idreported  FROM reported where fecha='$fecha'  and modulo_idmodulo=$idmodulo and remesa_idremesa=$remesa and encargadoRM_idencargadoRM=$idusuario;";
                   $query = $con->query($sql3);
                   $r=$query->fetch_array();
                   $idrecuperado=$r["idreported"];
+///////////////////////////////
 
 
                   if($idrecuperado>1){
@@ -268,12 +274,25 @@ if($_POST['guardar']){
          .let{
             font-size: 30px;
             font: italic;}
+    form select:required {
+    border:2px solid red;
+ /* otras propiedades */
+}
+ form input:required {
+    border:2px solid red;
+ /* otras propiedades */
+}
+form label:required {
+    border:2px solid red;
+ /* otras propiedades */
+}
     </style>
     <body>
          <?php include "menub.php"; ?>
          <br>
         <h3 align="center">Registro de SIIRFE Diario</h3>
-        <h6 align="center"> Ingrese los datos correspondientes </h6>
+        
+       <center> <label align="center" required style="border:2px solid red; font-size: 12px;"> Requeridos para el funcionamiento </label></center>
 
 
         <div class="container" align="center" style="border:1px solid:#C0BCBC;">
@@ -282,7 +301,7 @@ if($_POST['guardar']){
                 <br><br>
                 <div class="form-group" style="width: 50%;">
                   <label>*</label> <label for="nombre">Remesa:</label>
-                  <select name="remesa" class="form-control" rows="5">
+                  <select name="remesa" class="form-control" rows="5" required>
                     <option value="0">Seleccione:</option>
                     <?php
 
@@ -403,6 +422,51 @@ if($_POST['guardar']){
                         ?>
 
                         </select>
+
+
+                     <label>*</label><label for="tipomodulo">Configuración:</label>
+                     <?php
+                       $sql3="select modulo_idmodulo from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
+                        $query = $con->query($sql3);
+                        $r=$query->fetch_array();
+                        $idmodulo=$r["modulo_idmodulo"];
+
+                        $sql4 =("select * from modulo where modulo.idmodulo=$idmodulo");
+                                      
+                         $query = $con -> query($sql4);
+                        $r=$query->fetch_array();
+
+                        $configuracionmodulo=$r["configuracion"];
+                            
+
+                       ?>                  
+                      
+                       <input type="text" class="form-control" rows="5" id="configuracionmodulo" name="clave" readonly="readonly" value="<?php print $configuracionmodulo ?>" style="text-align:center;"> 
+
+                        </select>
+
+                         <label>*</label><label for="tipomodulo">Total de equipos configurados:</label>
+                          <?php
+
+                        $sql3="select modulo_idmodulo from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
+                        $query = $con->query($sql3);
+                        $r=$query->fetch_array();
+                        $idmodulo=$r["modulo_idmodulo"];
+
+                        $sql4 =("select * from modulo where modulo.idmodulo=$idmodulo");
+                                      
+                         $query = $con -> query($sql4);
+                        $r=$query->fetch_array();
+                      $totalequipos=$r["totalequipos"];
+
+                       ?>
+
+                    
+                           <input type="text" class="form-control" id="equipos" rows="5"  name="clave" readonly="readonly" value="<?php print $totalequipos ?>" style="text-align:center;" > 
+
+
+
+
                         <label>*</label> <label for="cargo">Fecha del reporte </label>
                 
 
@@ -411,10 +475,10 @@ if($_POST['guardar']){
                      <br>                  
                     <hr style="border-color: black" />
 
-                    <ul class="nav nav-tabs">
-                         <li class="active"><a data-toggle="tab" href="#home" onclick="valida2();"> FOLIOS </a></li>
-                    <li><a data-toggle="tab" href="#menu1"> TRAMITES </a></li>
-                    <li><a data-toggle="tab" href="#menu2" onclick="vsuma();"> CREDENCIALES </a></li>
+                    <ul class="nav nav-tabs" name="myTabs">
+                    <li class="active"><a data-toggle="tab" href="#home" onclick="valida2();"> FOLIOS </a></li>
+                    <li><a data-toggle="tab" href="#menu1" onclick=""> TRAMITES </a></li>
+                    <li><a data-toggle="tab" href="#menu2" onclick="vsuma();bandera2();"> CREDENCIALES </a></li>
                     <li><a data-toggle="tab" href="#menu3"> OTROS </a></li>
                     <li><a data-toggle="tab" href="#menu4"> INCIDENCIAS </a></li>
                     </ul>
@@ -548,8 +612,6 @@ if($_POST['guardar']){
 
                             document.getElementById("ffinal").value  = suma;
                             }
-                               
-                         
 
                             }
 
@@ -734,19 +796,24 @@ if($_POST['guardar']){
                              var i = document.getElementById("solicitudexpedientes").value;
                              var j = document.getElementById("solicitudrectificacion").value;
                              var k = document.getElementById("demanda").value;
-                             var l = document.getElementById("rechazados").value;
-                             var m = document.getElementById("curp").value;
+                             //var l = document.getElementById("rechazados").value;
+                             //var m = document.getElementById("curp").value;
                          
                              var ttramites= document.getElementById("ttramites").value;
 
 
-                            var sumatramites = parseInt(a)+ parseInt(b)+ parseInt(c)+ parseInt(d)+ parseInt(e)+ parseInt(f)+ parseInt(g)+ parseInt(h)+ parseInt(i)+ parseInt(j)+ parseInt(k)+ parseInt(l)+ parseInt(m)+parseInt(y);
+                            var sumatramites = parseInt(a)+ parseInt(b)+ parseInt(c)+ parseInt(d)+ parseInt(e)+ parseInt(f)+ parseInt(g)+ parseInt(h)+ parseInt(i)+ parseInt(j)+ parseInt(k)+parseInt(y);
                          
-                            
 
                             if(sumatramites != suma){
                                 alert("Los valores registrados en folios y en tramites no son iguales, verifique por favor");
-                              
+                               var bandera=1;
+                               document.getElementById("bandera").value =bandera;
+                               //$('#someTab').tab('show')
+                               hidden.bs.tab('show')
+                          
+
+
                             }
 
                           if ((ttramites==0) && (suma==0)){
@@ -755,9 +822,7 @@ if($_POST['guardar']){
                             var folioantes=parseInt(foantes)-1;
                           
                             document.getElementById("ffinal").value= folioantes;
-                            document.getElementById("finicial").value= folioantes;
-
-                            
+                            document.getElementById("finicial").value= folioantes;   
 
 
                           }
@@ -770,10 +835,18 @@ if($_POST['guardar']){
 
                         <br>
                         <h5>Asigne los valores correspondientes a cada elemento </h5> <br>
+                        <script type="text/javascript">
+                          
+                          function bandera2(){
+                            var ban= document.getElementById("bandera").value;
+                            alert ("alerta");
+
+                          }
+                        </script>
 
                         <div>
                             
-                            
+                            <input type="" id="bandera" name="bandera" style="text-align:center;"> 
                             <label for="inscr" class="form-control"> Credenciales iniciales del día:</label>
 
                              <?php 
@@ -823,9 +896,6 @@ if($_POST['guardar']){
 
                              <br>
                              <br>
-
-        
-        
 
                             <div class="form-row">
                             <div class="form-group col-md-6">
@@ -940,9 +1010,13 @@ if($_POST['guardar']){
                         <div id="menu3" class="tab-pane fade">
 
                         <br>
-                         <h5> Asigne los valores correspondientes a cada elemento </h5> <br>
+                          
+       <center> <label align="center" required style="border:2px solid red; font-size: 12px;"> Requeridos para el funcionamiento </label></center> <br>
+
    
                         <div>
+
+                            
 
                             <div class="form-row">
                             <div class="form-group col-md-6">
@@ -987,10 +1061,10 @@ if($_POST['guardar']){
                             </div>
                             </div>
 
-                             <div class="form-row">
+                            <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="correc" class="form-control"> Dia Laborable :</label>
-                            <select id="laborable" name="laborable">
+                            <label for="correc" class="form-control"  required > <abbr title="Este campo es obligatorio">*</abbr> Dia Laborable :</label>
+                            <select id="laborable" name="laborable" required  >
                             <option value="0">Seleccione:</option>
                             <option value="1">SI </option> 
                               <option value="2">NO </option>
@@ -1001,12 +1075,19 @@ if($_POST['guardar']){
 
                              <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="correc" class="form-control">Incidencias registradas en el día :</label>
-                            <select id="incidencias" name="incidencias">
+                            <label for="correc" class="form-control" onmouseenter="avisar();" required >Incidencias registradas en el día :</label>
+                            <select id="incidencias" name="incidencias" onmouseover="avisar();"required >
                             <option value="0">Seleccione:</option>
                             <option value="1">SI </option> 
                               <option value="2">NO </option>
                             </select>
+
+                            <script type="text/javascript">
+
+                            function avisar(){
+                              alert("Recuerde activar la opción de día laborable para poder utilizar esta función");
+                            }
+                            </script>
 
                             </div>
                             </div>
@@ -1014,7 +1095,7 @@ if($_POST['guardar']){
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="correc" class="form-control"> Fichas entregadas :</label>
-                            <input type="number"  id="fichasentregadas" name="fichasentregadas" value="0" min="0" max="5550" step="1"  style="text-align:center;">
+                            <input type="number"  id="fichasentregadas" name="fichasentregadas" value="0" min="0" max="5550" step="1"  style="text-align:center;" onkeyup="validarvv();">
 
                         
                             </div>
@@ -1023,7 +1104,7 @@ if($_POST['guardar']){
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="correc" class="form-control"> Fichas atendidas:</label>
-                            <input type="number" id="fichasatendidas" name="fichasatendidas" value="0" min="0" max="5550" step="1" style="text-align:center;" onclick="validarv();" onkeyup="validarv();"> 
+                            <input type="number" id="fichasatendidas" name="fichasatendidas" value="0" min="0" max="5550" step="1" style="text-align:center;" onclick="validarv();avisar();" onkeyup="validarv();"> 
 
                             <script type="text/javascript">
                                 function validarv(){
@@ -1037,61 +1118,22 @@ if($_POST['guardar']){
                                
                                }
                             </script>
+                             <script type="text/javascript">
+                                function validarvv(){
+                                x=document.getElementById("fichasentregadas").value;
+                               y=document.getElementById("fichasatendidas").value;
+
+                               if(y>x){
+
+                                alert("No puedes tener más fichas repartidas que las entregadas, verifiqué el dato");
+                               }
+                               
+                               }
+                            </script>
                             </div>
                             </div>
 
-                            <div class="form-row">
-                            <div class="form-group col-md-12">
-                            <label for="correc" class="form-control" rows="10"> Configuración :</label>
-
-                            <?php
-                       $sql3="select modulo_idmodulo from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-                        $r=$query->fetch_array();
-                        $idmodulo=$r["modulo_idmodulo"];
-
-                        $sql4 =("select * from modulo where modulo.idmodulo=$idmodulo");
-                                      
-                         $query = $con -> query($sql4);
-                        $r=$query->fetch_array();
-
-                        $configuracionmodulo=$r["configuracion"];
-                            
-
-                       ?>
-
-
-                    <input type="text" class="form-control" rows="5" id="configuracionmodulo" name="clave" readonly="readonly" value="<?php print $configuracionmodulo ?>" style="text-align:center;"> 
-                            </div>
-                            </div>
-
-                             <div class="form-row">
-                            <div class="form-group col-md-12">
-                            <label for="correc" class="form-control" rows="5"> Total de equipos configurados:</label>
-
-                              <?php
-
-                        $sql3="select modulo_idmodulo from distrito_encargado where encargadoRM_idencargadoRM=$idusuario;";
-                        $query = $con->query($sql3);
-                        $r=$query->fetch_array();
-                        $idmodulo=$r["modulo_idmodulo"];
-
-                        $sql4 =("select * from modulo where modulo.idmodulo=$idmodulo");
-                                      
-                         $query = $con -> query($sql4);
-                        $r=$query->fetch_array();
-                      $totalequipos=$r["totalequipos"];
-
-                       ?>
-
-                    
-                           <input type="text" class="form-control" id="equipos" rows="5"  name="clave" readonly="readonly" value="<?php print $totalequipos ?>" style="text-align:center;" > 
-
-                            </div>
-                            </div>
-
-                        
-                        <bR>
+                           
 
                         </div>
 
@@ -1199,10 +1241,34 @@ if($_POST['guardar']){
                             <label for="correc" class="form-control"> Justifique el rango ocurrido  :</label>
                             <input type="text" class="form-control" id="Justifique" name="Justifique"  style="text-align:center;" >
                             </div>
-                        </div>                   
+                        </div>  
+
                
                 </div> 
-             <BUTTON><input type="submit" class="btn btn-primary"   id="guardar" name="guardar" id="guardar" value="GUARDAR">
+    <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+        <a class="btn btn-warning btnNext" > SIGUIENTE APARTADO </a>
+    </div>
+    <div class="tab-pane" id="menu2">
+        <a class="btn btn-primary btnNext" >Next</a>
+        <a class="btn btn-primary btnPrevious" >Previous</a>
+    </div>
+    <div class="tab-pane" id="tab3">
+        <a class="btn btn-primary btnPrevious" >Previous</a>
+    </div>
+</div>
+
+<br>
+<script>
+   $('.btnNext').click(function(){
+  $('.nav-tabs > .active').next('li').find('a').trigger('click');
+});
+
+  $('.btnPrevious').click(function(){
+  $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+});
+</script>
+             <BUTTON><input type="submit" class="btn btn-primary"   id="guardar" name="guardar" id="guardar" value="GUARDAR" onmouseover="siguardo();">
                     </button>
                                     
                     <a href="listareported.php" class="btn btn-success" role="button">CANCELAR</a>
@@ -1369,6 +1435,11 @@ $("document").ready(function(){
          }
                      
 
+}
+
+
+function siguardo(){
+  alert ("NO ESTAS PREPARADO PARA GUARDAR");
 }
        
             </script>
