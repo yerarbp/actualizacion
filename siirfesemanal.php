@@ -57,15 +57,30 @@
   </style>
   <script >
   $(document).ready(function() {
-    $('#sirfe').DataTable( {
-        dom: 'Bfrtip',
+    var table = $('#sirfe').DataTable();
+ 
+    new $.fn.dataTable.Buttons( table, {
         buttons: [
-            'copy', 'excel' 
+            'copy',
+            {
+                extend: 'excel',
+                
+
+            }
         ]
     } );
-} );
+ 
+    table.buttons( 0, null ).container().prependTo(
+        table.table().container()
+    );
+} );;
 
   </script>
+
+
+
+    
+
 <body style="width: auto;">
 
 <?php include "menuc.php";
@@ -82,7 +97,7 @@
    <form name="form1" id="form1" method="post" action="" enctype="multipart/form-data">
 
   <h3 align="center" class="let"> SIIRFE SEMANAL  </h3>
-   <h5 align="center"> * </h5>
+   
    <br>
 
     <div class="row">
@@ -151,7 +166,8 @@
 
         <?php
           include "conexion.php";
-
+          $mes=date('m');
+          $año=date('Y');
          $contador=1;
          $i=1;
          $datos = array();
@@ -236,7 +252,7 @@
 
           
    $iddistrito= $datos[$i];
-     $sql="select * from reported where distrito_iddistrito=$iddistrito and  fecha BETWEEN "."'".$fechai."'"." and " ."'".$fechaf. "'"." and validado=1" .$criterio. " group by modulo_idmodulo;"; ECHO "<BR>";
+     echo $sql="select * from reported where distrito_iddistrito=$iddistrito and  fecha BETWEEN "."'".$fechai."'"." and " ."'".$fechaf. "'"." and validado=1" .$criterio. " group by modulo_idmodulo;"; ECHO "<BR>";
 
 
     $rs = $con->query($sql);
@@ -278,7 +294,7 @@
               ///////////////////////////////////////////COL5
                echo "<td>".$tipomodulo."</td>";
                ////////////////////////////////////////col 6
-            $sql="select min(folioinicial) as finicial from reported where modulo_idmodulo=$idmodulo";
+            $sql="select min(folioinicial) as finicial from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $finicia=$r["finicial"];
@@ -298,7 +314,7 @@
 
               
               /////////////////////////////////////////////////col7
-               $sql="select max(foliofinal) as ffinal from reported where modulo_idmodulo=$idmodulo";
+               $sql="select max(foliofinal) as ffinal from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $ffinal=$r["ffinal"];
@@ -310,14 +326,14 @@
                $a+= $sumafolios;
            
              /////////////////////////////////////////////// col 9
-            $sql="select sum(folionocupados) as fno from reported where modulo_idmodulo=$idmodulo";
+            $sql="select sum(folionocupados) as fno from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año ";
              $query = $con->query($sql);
               $r=$query->fetch_array();
               $folionocupados=$r["fno"];
               echo "<td>".$folionocupados."</td>";
               $b+= $folionocupados;
               ///////////////////////////////////////// col 10
-              $sql="select sum(inscripciones) as insc from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(inscripciones) as insc from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $inscripciones=$r["insc"];
@@ -326,14 +342,14 @@
 
               echo "<td>".$inscripciones."</td>";
               ////////////////////////////////////////// col 11
-              $sql="select sum(correcion) as corr from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(correcion) as corr from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $corr=$r["corr"];
               $d+= $corr;
               echo "<td>".$corr."</td>";
               ////////////////////////////////////////// col 12
-              $sql="select sum(cambiodom) as cambiod from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(cambiodom) as cambiod from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $cambiod=$r["cambiod"];
@@ -341,70 +357,70 @@
 
               echo "<td>".$cambiod."</td>";
               /////////////////////////////// col 13
-              $sql="select sum(reposicion) as reposicion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(reposicion) as reposicion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $reposicion=$r["reposicion"];
               $f+= $reposicion;
               echo "<td>".$reposicion."</td>";
               //////////////////////////////////////// col 14
-              $sql="select sum(coreccionddireccion) as coreccionddireccion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(coreccionddireccion) as coreccionddireccion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $coreccionddireccion=$r["coreccionddireccion"];
               $g+= $coreccionddireccion;
               echo "<td>".$coreccionddireccion."</td>";
               //////////////////////////////////////// col 15
-              $sql="select sum(reincorporacion) as reincorporacion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(reincorporacion) as reincorporacion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $reincorporacion=$r["reincorporacion"];
               $h+= $reincorporacion;
               echo "<td>".$reincorporacion."</td>";
                //////////////////////////////////////// col 16
-              $sql="select sum(reemplazo) as reemplazo from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(reemplazo) as reemplazo from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
              $reemplazo=$r["reemplazo"];
               $ii+= $reemplazo;
               echo "<td>".$reemplazo."</td>";
                //////////////////////////////////////// col 17
-              $sql="select sum(cancelados) as cancelados from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(cancelados) as cancelados from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $cancelados=$r["cancelados"];
               $j+= $cancelados;
               echo "<td>".$cancelados."</td>";
               //////////////////////////////////////// col 18
-              $sql="select sum(rechazados) as rechazados from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(rechazados) as rechazados from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $rechazados=$r["rechazados"];
               $k+= $rechazados;
               echo "<td>".$rechazados."</td>";
                 //////////////////////////////////////// col 19
-              $sql="select sum(curp) as curp from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(curp) as curp from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $curp=$r["curp"];
                $l+= $curp;
               echo "<td>".$curp."</td>";
                 //////////////////////////////////////// col 20
-              $sql="select sum(solicitudexpedicion) as solicitudexpedicion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(solicitudexpedicion) as solicitudexpedicion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $solicitudexpedicion=$r["solicitudexpedicion"];
               $m+= $solicitudexpedicion;
               echo "<td>".$solicitudexpedicion."</td>";
                //////////////////////////////////////// col 21
-              $sql="select sum(solicitudrectificacion) as solicitudrectificacion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(solicitudrectificacion) as solicitudrectificacion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $solicitudrectificacion=$r["solicitudrectificacion"];
               $n+= $solicitudrectificacion;
               echo "<td>".$solicitudrectificacion."</td>";
                //////////////////////////////////////// col 22
-              $sql="select sum(demandajucion) as demandajucion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(demandajucion) as demandajucion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $demandajucion=$r["demandajucion"];
@@ -413,7 +429,7 @@
 
               //////////////////////////////////////// col 23
 
-              $sql="select sum(total) as total from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(total) as total from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $total=$r["total"];
@@ -421,7 +437,7 @@
               echo "<td>".$total."</td>";
               //////////////////////////////////////// col 24
 
-              $sql="select sum(credencialinidia) as credencialinidia from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(credencialinidia) as credencialinidia from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $credencialinidia=$r["credencialinidia"];
@@ -429,7 +445,7 @@
               echo "<td>".$credencialinidia."</td>";
               //////////////////////////////////////// col 25
 
-              $sql="select sum(actualizacion) as actualizacion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(actualizacion) as actualizacion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $actualizacion=$r["actualizacion"];
@@ -437,7 +453,7 @@
               echo "<td>".$actualizacion."</td>";
                 //////////////////////////////////////// col 26
 
-              $sql="select sum(otrotipo) as otrotipo from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(otrotipo) as otrotipo from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $otrotipo=$r["otrotipo"];
@@ -445,7 +461,7 @@
               echo "<td>".$otrotipo."</td>";
               //////////////////////////////////////// col 27
 
-              $sql="select sum(importadas) as importadas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(importadas) as importadas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $importadas=$r["importadas"];
@@ -453,7 +469,7 @@
               echo "<td>".$importadas."</td>";
                //////////////////////////////////////// col 28
 
-              $sql="select sum(exportadas) as exportadas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(exportadas) as exportadas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $exportadas=$r["exportadas"];
@@ -461,7 +477,7 @@
               echo "<td>".$exportadas."</td>";
                  //////////////////////////////////////// col 29
 
-              $sql="select sum(entregadas) as entregadas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(entregadas) as entregadas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $entregadas=$r["entregadas"];
@@ -469,7 +485,7 @@
               echo "<td>".$entregadas."</td>";
                //////////////////////////////////////// col 30
 
-              $sql="select sum(anexas) as anexas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(anexas) as anexas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $anexas=$r["anexas"];
@@ -477,7 +493,7 @@
               echo "<td>".$anexas."</td>";
                //////////////////////////////////////// col 31
 
-              $sql="select sum(reimpresiones) as reimpresiones from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(reimpresiones) as reimpresiones from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $reimpresiones=$r["reimpresiones"];
@@ -485,7 +501,7 @@
               echo "<td>".$reimpresiones."</td>";
               //////////////////////////////////////// col 32
 
-              $sql="select sum(robo) as robo from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(robo) as robo from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $robo=$r["robo"];
@@ -493,7 +509,7 @@
               echo "<td>".$robo."</td>";
               //////////////////////////////////////// col 33
 
-              $sql="select sum(retiradas) as retiradas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(retiradas) as retiradas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $retiradas=$r["retiradas"];
@@ -502,7 +518,7 @@
 
                //////////////////////////////////////// col 34
 
-              $sql="select sum(credencialdisponible) as credencialdisponible from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(credencialdisponible) as credencialdisponible from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $credencialdisponible=$r["credencialdisponible"];
@@ -511,7 +527,7 @@
                //////////////////////////////////////// col 35
 
 
-              $sql="select sum(sobran) as sobran from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(sobran) as sobran from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $sobran=$r["sobran"];
@@ -520,7 +536,7 @@
                //////////////////////////////////////// col 36
 
 
-              $sql="select sum(duplicadas) as duplicadas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(duplicadas) as duplicadas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $duplicadas=$r["duplicadas"];
@@ -529,7 +545,7 @@
               //////////////////////////////////////// col 37
 
 
-              $sql="select sum(reimpresion) as reimpresion from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(reimpresion) as reimpresion from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $reimpresion=$r["reimpresion"];
@@ -538,7 +554,7 @@
               //////////////////////////////////////// col 38
 
 
-              $sql="select sum(credevte) as credevte from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(credevte) as credevte from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $credevte=$r["credevte"];
@@ -547,7 +563,7 @@
               //////////////////////////////////////// col 39
 
 
-              $sql="select sum(credencialduplicadas) as credencialduplicadas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(credencialduplicadas) as credencialduplicadas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $credencialduplicadas=$r["credencialduplicadas"];
@@ -557,7 +573,7 @@
               //////////////////////////////////////// col 40
 
 
-              $sql="select sum(credencialcanjeadables) as credencialcanjeadables from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(credencialcanjeadables) as credencialcanjeadables from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $credencialcanjeadables=$r["credencialcanjeadables"];
@@ -566,7 +582,7 @@
               //////////////////////////////////////// col 41
 
 
-              $sql="select sum(fichasentregadas) as fichasentregadas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(fichasentregadas) as fichasentregadas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $fichasentregadas=$r["fichasentregadas"];
@@ -575,7 +591,7 @@
               //////////////////////////////////////// col 42
 
 
-              $sql="select sum(fichasatendidas) as fichasatendidas from reported where modulo_idmodulo=$idmodulo";
+              $sql="select sum(fichasatendidas) as fichasatendidas from reported where modulo_idmodulo=$idmodulo and Year(fecha)=$año";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $fichasatendidas=$r["fichasatendidas"];
@@ -586,7 +602,7 @@
 
         
 
-              $sql="select *  from modulo where idmodulo=$idmodulo";
+              $sql="select *  from modulo where idmodulo=$idmodulo ";
               $query = $con->query($sql);
               $r=$query->fetch_array();
               $configuracion=$r["configuracion"];
