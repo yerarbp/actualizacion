@@ -37,7 +37,7 @@
 
                  <li><a href="listareported.php" >Reportes de SIIRFE Diario  </a></li>
                  <li><a href="listaincidencias.php" > Reportes de Incidencias  </a></li>
-                 <li><a href="acomulados.php">Acomulados </a></li>
+                <!-- <li><a href="acomulados.php">Acomulados </a></li> -->
                 
                  
 </li>
@@ -51,12 +51,16 @@
                 </ul>
 
 
-          <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
             <li class="dropdown" style="font-size:13px;">
-            <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-check"> </span>&nbsp;REPORTE <span class="caret"> </span></a>  
+            <a href="#" class="dropdown-toggle blanco" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">   <span class="glyphicon glyphicon-check"> </span>&nbsp;ACOMULADOS <span class="caret"> </span></a>  
               <ul class="dropdown-menu" >
 
-                 <li><a href="reported.php"> Reporte de avance de la semana </a></li>
+                <li><a href="acomulados.php">Acomulados </a></li>
+                <li><a href="siirfesemanalg.php">Acomulados2 </a></li>
+
+
+                 <!--<li><a href="reported.php"> Reporte de avance de la semana </a></li>-->
                  
           </li>
           </ul>
