@@ -60,7 +60,7 @@ if(!empty($_POST)){
 			$_SESSION['apaterno']=$array;
 			$_SESSION['amaterno']=$array;
 			$_SESSION['nivelp']=$array;
-				print "<script>window.location='listareportedc.php';</script>";	
+				print "<script>window.location='reporteyvalidacion.php';</script>";	
 			
 
 			} else {
