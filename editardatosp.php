@@ -477,38 +477,49 @@
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="correc" class="form-control">  Cancelados:</label>
-                            <input type="number" id="cancelados" name="cancelados" value="0" min="0" max="5550" step="1" value="0" min="0" max="5550" step="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2(); validar();" value="<?php print $cancelados?>" style="text-align:center;"> 
+                             <label for="correc" class="form-control">  Cancelados:</label> 
+                             <input type="number" id="cancelados" name="cancelados"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"   value="<?php print $cancelados?>" style="text-align:center;">
+
                             </div>
+
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inscr" class="form-control"> Rechazados:  </label>
-                            <input type="number"  id="rechazados" name="rechazados" value="0" min="0" max="5550" step="1" value="0" min="0" max="5550" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2(); validar();" value="<?php print $rechazados?>" style="text-align:center;"> 
+                        
+
+                            <input type="number" id="rechazados" name="rechazados"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"   value="<?php print $rechazados?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="correc" class="form-control">  CURP:</label>
-                            <input type="number" id="curp" name="curp" value="0" min="0" max="5550" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2(); validar();" value="<?php print $curp?>" style="text-align:center;"> 
+                            <input type="number"  id="curp" name="curp"min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"   value="<?php print $curp?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inscr" class="form-control">  Solicitud de Expedientes:  </label>
-                            <input type="number" id="solicitudexpedientes" name="solicitudexpedientes" value="0" min="0" max="5550" step="1" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2(); validar();" value="<?php print $solicitudexpedientes?>" style="text-align:center;">
+                            
+
+                            <input type="number"  id="solicitudexpedientes" name="solicitudexpedientes" min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"  value="<?php print $solicitudexpedicion?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="correc" class="form-control">  Solicitud de Rectificación:</label>
-                            <input type="number" id="solicitudrectificacion" name="solicitudrectificacion" value="0" min="0" max="5550" step="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2(); validar();" value="<?php print $solicitudrectificacion?>" style="text-align:center;"> 
+                           
+
+                             <input type="number"  id="solicitudrectificacion" name="solicitudrectificacion"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"   value="<?php print $solicitudrectificacion?>" style="text-align:center;">
+
                             </div>
                             </div>
                             <div class="form-row">
                             <div class="form-group col-md-6">
                             <label for="inscr" class="form-control"> Demanda de jución:  </label>
-                            <input type="number" id="demanda" name="demanda" value="0" min="0" max="5550"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2(); validar();" step="1" value="<?php print $demandajucion?>" style="text-align:center;"> 
+                           
+
+                              <input type="number"  id="demanda" name="demanda"  min="0" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/  onclick ="PasarValor2(); validar();" onkeyup="PasarValor2();validar();"   value="<?php print  $demandajucion?>" style="text-align:center;">
                             </div>
                             </div>
                             <div class="form-row">
@@ -562,13 +573,13 @@
                              var i = document.getElementById("solicitudexpedientes").value;
                              var j = document.getElementById("solicitudrectificacion").value;
                              var k = document.getElementById("demanda").value;
-                             var l = document.getElementById("rechazados").value;
-                             var m = document.getElementById("curp").value;
+                             //var l = document.getElementById("rechazados").value;
+                             //var m = document.getElementById("curp").value;
                          
                              var ttramites= document.getElementById("ttramites").value;
 
 
-                            var sumatramites = parseInt(a)+ parseInt(b)+ parseInt(c)+ parseInt(d)+ parseInt(e)+ parseInt(f)+ parseInt(g)+ parseInt(h)+ parseInt(i)+ parseInt(j)+ parseInt(k)+ parseInt(l)+ parseInt(m)+parseInt(y);
+                            var sumatramites = parseInt(a)+ parseInt(b)+ parseInt(c)+ parseInt(d)+ parseInt(e)+ parseInt(f)+ parseInt(g)+ parseInt(h)+ parseInt(i)+ parseInt(j)+ parseInt(k)+parseInt(y);
                          
                             
 
